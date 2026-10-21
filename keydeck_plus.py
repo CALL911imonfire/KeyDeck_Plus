@@ -1,8 +1,9 @@
 """
 KeyDeck - a customizable on-screen keyboard for Windows.
 
-Run:   python keydeck.py
-Build: pip install pyinstaller && pyinstaller --noconsole --onefile keydeck.py
+Run:   python keydeck_plus.py     (keep keydeck_words.py in the same folder)
+Build: pip install pyinstaller && pyinstaller --noconsole --onefile --name KeyDeckPlus keydeck_plus.py
+Optional: pip install pillow  (JPG and other picture types, smooth scaling, animated pictures)
 
 Highlights
   * Never steals focus - it types into whatever program you were using.
@@ -32,6 +33,17 @@ KEYDECK PLUS (this file) adds, on top of everything above:
   * Dwell clicking: hover and hold still, and KeyDeck clicks for you (toolbar "Dwell" button;
     time, steadiness and repeat in Settings). Works on keys, toolbar, suggestions and menus.
   * Shortcut and macro buttons fire once instead of auto-repeating when held.
+  * Swipe typing (hold and drag, or click-to-swipe) with contractions; right-click Backspace
+    deletes the last swiped word.
+  * Autocorrect, smart capitals and punctuation, adjustable number of suggestions.
+  * Speak words aloud, Speak keys (a button that says a phrase) and a caption bar that shows
+    what was said.
+  * Pictures and animated GIFs on keys, saved inside the layout so shared layouts keep them.
+  * Colour themes (including two high-contrast ones), keyboard background colour, per-key
+    outline colour and thickness.
+  * Switch scanning (row-column) driven by a plain left click, with scanning-friendly layouts.
+  * Minimize to a small tab that reopens by resting the pointer on it (no click needed).
+  * Import / export of layouts, and example loadouts in the repository.
 
 Notes
   * Windows only. Layout of key codes assumes a US keyboard layout.
@@ -2655,7 +2667,7 @@ class KeyDeck:
         swipe_menu.add_separator()
         swipe_menu.add_command(label="Hold the mouse button on a letter, drag over the letters",
                                state="disabled")
-        swipe_menu.add_command(label="of a word, then let go. Other likely words appear above.",
+        swipe_menu.add_command(label="of a word, then let go. With Predictive text on, other likely words appear above.",
                                state="disabled")
         menu.add_cascade(label="Swipe typing", menu=swipe_menu)
 
