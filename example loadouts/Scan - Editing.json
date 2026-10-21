@@ -1,0 +1,295 @@
+{
+  "version": 1,
+  "keys": [
+    {
+      "key": "Shortcut",
+      "label": "Copy",
+      "label2": "",
+      "x": 0.25,
+      "y": 0.25,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "C"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Paste",
+      "label2": "",
+      "x": 1.95,
+      "y": 0.25,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "V"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Cut",
+      "label2": "",
+      "x": 3.65,
+      "y": 0.25,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "X"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Undo",
+      "label2": "",
+      "x": 5.35,
+      "y": 0.25,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "Z"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Redo",
+      "label2": "",
+      "x": 7.05,
+      "y": 0.25,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "Y"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Select all",
+      "label2": "",
+      "x": 0.25,
+      "y": 1.95,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "A"
+      ]
+    },
+    {
+      "key": "Home",
+      "label": "Home",
+      "label2": "",
+      "x": 1.95,
+      "y": 1.95,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "End",
+      "label": "End",
+      "label2": "",
+      "x": 3.65,
+      "y": 1.95,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Shortcut",
+      "label": "Delete word",
+      "label2": "",
+      "x": 5.35,
+      "y": 1.95,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "Backspace"
+      ]
+    },
+    {
+      "key": "Delete",
+      "label": "Del",
+      "label2": "",
+      "x": 7.05,
+      "y": 1.95,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Left",
+      "label": "\u25c0",
+      "label2": "",
+      "x": 0.25,
+      "y": 3.65,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Up",
+      "label": "\u25b2",
+      "label2": "",
+      "x": 1.95,
+      "y": 3.65,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Down",
+      "label": "\u25bc",
+      "label2": "",
+      "x": 3.65,
+      "y": 3.65,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Right",
+      "label": "\u25b6",
+      "label2": "",
+      "x": 5.35,
+      "y": 3.65,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Esc",
+      "label": "Esc",
+      "label2": "",
+      "x": 7.05,
+      "y": 3.65,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Tab",
+      "label": "Tab",
+      "label2": "",
+      "x": 8.75,
+      "y": 3.65,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Layer",
+      "label": "ABC",
+      "label2": "",
+      "x": 0.25,
+      "y": 5.35,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "#6c3fc5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "layer": "Scan - Letters",
+      "layer_mode": "go"
+    },
+    {
+      "key": "Space",
+      "label": "Space",
+      "label2": "",
+      "x": 1.95,
+      "y": 5.35,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "#1f7a4d",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Backspace",
+      "label": "\u232b",
+      "label2": "",
+      "x": 3.65,
+      "y": 5.35,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "#b03a2e",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Enter",
+      "label": "Enter",
+      "label2": "",
+      "x": 5.35,
+      "y": 5.35,
+      "w": 1.5999999999999999,
+      "h": 1.5999999999999999,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    }
+  ]
+}

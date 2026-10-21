@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "keys": [
+    {
+      "key": "Shortcut",
+      "label": "!",
+      "label2": "",
+      "x": 0.25,
+      "y": 0.25,
+      "w": 1,
+      "h": 1,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "1"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "@",
+      "label2": "",
+      "x": 1.25,
+      "y": 0.25,
+      "w": 1,
+      "h": 1,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "2"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "#",
+      "label2": "",
+      "x": 2.25,
+      "y": 0.25,
+      "w": 1,
+      "h": 1,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "3"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "$",
+      "label2": "",
+      "x": 3.25,
+      "y": 0.25,
+      "w": 1,
+      "h": 1,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "4"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "%",
+      "label2": "",
+      "x": 4.25,
+      "y": 0.25,
+      "w": 1,
+      "h": 1,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "5"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "&",
+      "label2": "",
+      "x": 5.25,
+      "y": 0.25,
+      "w": 1,
+      "h": 1,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "7"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "(",
+      "label2": "",
+      "x": 6.25,
+      "y": 0.25,
+      "w": 1,
+      "h": 1,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "9"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": ")",
+      "label2": "",
+      "x": 7.25,
+      "y": 0.25,
+      "w": 1,
+      "h": 1,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "0"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "?",
+      "label2": "",
+      "x": 8.25,
+      "y": 0.25,
+      "w": 1,
+      "h": 1,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "/"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": ":",
+      "label2": "",
+      "x": 9.25,
+      "y": 0.25,
+      "w": 1,
+      "h": 1,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        ";"
+      ]
+    },
+    {
+      "key": "Space",
+      "label": "",
+      "label2": "",
+      "x": 2.25,
+      "y": 1.5,
+      "w": 5.0,
+      "h": 1,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Backspace",
+      "label": "Backspace",
+      "label2": "",
+      "x": 7.5,
+      "y": 1.5,
+      "w": 2.0,
+      "h": 1,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    }
+  ]
+}

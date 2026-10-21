@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "keys": [
+    {
+      "key": "Shortcut",
+      "label": "Copy\nCtrl+C",
+      "label2": "",
+      "x": 0.25,
+      "y": 0.25,
+      "w": 2.1,
+      "h": 1.6,
+      "color": "#35405a",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "C"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Paste\nCtrl+V",
+      "label2": "",
+      "x": 2.5,
+      "y": 0.25,
+      "w": 2.1,
+      "h": 1.6,
+      "color": "#35405a",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "V"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Cut\nCtrl+X",
+      "label2": "",
+      "x": 4.75,
+      "y": 0.25,
+      "w": 2.1,
+      "h": 1.6,
+      "color": "#35405a",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "X"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Undo\nCtrl+Z",
+      "label2": "",
+      "x": 7.0,
+      "y": 0.25,
+      "w": 2.1,
+      "h": 1.6,
+      "color": "#35405a",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "Z"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Redo\nCtrl+Y",
+      "label2": "",
+      "x": 0.25,
+      "y": 2.0,
+      "w": 2.1,
+      "h": 1.6,
+      "color": "#35405a",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "Y"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Select all\nCtrl+A",
+      "label2": "",
+      "x": 2.5,
+      "y": 2.0,
+      "w": 2.1,
+      "h": 1.6,
+      "color": "#35405a",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "A"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Save\nCtrl+S",
+      "label2": "",
+      "x": 4.75,
+      "y": 2.0,
+      "w": 2.1,
+      "h": 1.6,
+      "color": "#35405a",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "S"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Find\nCtrl+F",
+      "label2": "",
+      "x": 7.0,
+      "y": 2.0,
+      "w": 2.1,
+      "h": 1.6,
+      "color": "#35405a",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "F"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Close tab\nCtrl+W",
+      "label2": "",
+      "x": 0.25,
+      "y": 3.75,
+      "w": 2.1,
+      "h": 1.6,
+      "color": "#35405a",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "W"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "New tab\nCtrl+T",
+      "label2": "",
+      "x": 2.5,
+      "y": 3.75,
+      "w": 2.1,
+      "h": 1.6,
+      "color": "#35405a",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "T"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Switch app\nAlt+Tab",
+      "label2": "",
+      "x": 4.75,
+      "y": 3.75,
+      "w": 2.1,
+      "h": 1.6,
+      "color": "#35405a",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LAlt",
+        "Tab"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Show desktop\nWin+D",
+      "label2": "",
+      "x": 7.0,
+      "y": 3.75,
+      "w": 2.1,
+      "h": 1.6,
+      "color": "#35405a",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LWin",
+        "D"
+      ]
+    }
+  ]
+}

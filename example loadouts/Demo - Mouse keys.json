@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "keys": [
+    {
+      "key": "Mouse Left",
+      "label": "Left\nclick",
+      "label2": "",
+      "x": 0.25,
+      "y": 0.25,
+      "w": 2.5,
+      "h": 2,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Mouse Middle",
+      "label": "Middle\nclick",
+      "label2": "",
+      "x": 3.0,
+      "y": 0.25,
+      "w": 2.0,
+      "h": 2,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Mouse Right",
+      "label": "Right\nclick",
+      "label2": "",
+      "x": 5.25,
+      "y": 0.25,
+      "w": 2.5,
+      "h": 2,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Mouse Double",
+      "label": "Double\nclick",
+      "label2": "",
+      "x": 0.25,
+      "y": 2.5,
+      "w": 3.5,
+      "h": 1.5,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Scroll Up",
+      "label": "Scroll\n\u25b2",
+      "label2": "",
+      "x": 8.0,
+      "y": 0.25,
+      "w": 1.75,
+      "h": 1.75,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Scroll Down",
+      "label": "Scroll\n\u25bc",
+      "label2": "",
+      "x": 8.0,
+      "y": 2.25,
+      "w": 1.75,
+      "h": 1.75,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Shortcut",
+      "label": "Back",
+      "label2": "",
+      "x": 4.0,
+      "y": 2.5,
+      "w": 1.75,
+      "h": 1.5,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LAlt",
+        "Left"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Forward",
+      "label2": "",
+      "x": 6.0,
+      "y": 2.5,
+      "w": 1.75,
+      "h": 1.5,
+      "color": "",
+      "fg": "",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LAlt",
+        "Right"
+      ]
+    }
+  ]
+}
