@@ -4,29 +4,46 @@
 
 KeyDeck is built around one idea: your keyboard should be whatever you need it to be. Build the layout you want, save it as a loadout, program each button to send a key, a whole shortcut, a macro, a mouse click, a spoken phrase or a picture, and scale the whole thing to a size that suits you. Hold down any key, and let KeyDeck learn the words you use as you type. It never takes focus from the program you're typing into.
 
-**KeyDeck Plus** adds everything that makes it usable without a physical keyboard or a fast hand: swipe typing, dwell clicking, switch scanning, speech, picture keys, high-contrast themes and shareable layouts.
+**KeyDeck Plus** adds everything that makes it usable without a physical keyboard or a fast hand: swipe typing, dwell typing, switch scanning, speech, picture keys, high-contrast themes and shareable layouts.
 
 <p align="center">
   <img src="screenshots/keyboard.png" alt="The default KeyDeck keyboard" width="760"><br>
   <em>The default KeyDeck layout: main keys, navigation cluster and numpad, plus a predictive text bar.</em>
 </p>
 
+## Why KeyDeck
+
+Most on-screen keyboards are a fallback: a fixed layout you can't change, with a few settings added on. But for many people the keyboard is the thing standing between them and the computer, and the right shape for it depends on how they move, see, hear and communicate. A layout that works for one person can be unusable for the next.
+
+KeyDeck starts from the opposite idea: the keyboard should fit the person, not the other way around. It tries to put as many accessibility options as possible in one free program, so that whichever way you can reach a computer, there is a way to type with it:
+
+- **If you can use a mouse but not a physical keyboard**, you get big or small keys wherever you want them, swipe typing, predictive text, macros and one-click shortcuts.
+- **If clicking is hard**, you get dwell typing, mouse keys and a minimize tab that reopens without a click, enough to type and browse the web without pressing a mouse button.
+- **If you use a single switch**, you get row-column scanning with layouts made for it.
+- **If you need high contrast or large print**, you get high-contrast themes, a custom background color, and an interface that scales from tiny to extra large.
+- **If speaking is difficult**, you get keys that speak phrases, picture keys, and linked layouts for communication boards, with captions that show what was said.
+
+Everything runs and is stored on your computer: layouts, settings and the words KeyDeck learns. There is no account to make and nothing to sign in to.
+
+KeyDeck is still growing, and it is shaped by the people who use it. If a feature would make your day easier, or something gets in your way, please [open an issue](../../issues) and say so. Feedback from people who rely on assistive technology is the most valuable kind.
+
 ## What makes KeyDeck different
 
 | | |
 |---|---|
 | [Build your own layout](#build-your-own-layout) | Move, resize, recolor, outline, add and delete keys, or start from a blank board |
-| [Loadouts](#loadouts) | Save any number of layouts, switch in a click, and import or export them to share |
+| [Loadouts](#loadouts) | Save any number of layouts, switch in a click, and import or export them to share. Includes [scaling and opacity](#scalable-interface) and [themes and colors](#themes-and-colors) |
 | [Programmable keys](#programmable-keys) | Send any key, a shortcut, a macro, a mouse click, a layer switch or a spoken phrase |
-| [Pictures and animation](#pictures-and-animation) | Put photos, drawings and animated GIFs on keys |
-| [Communication boards](#communication-boards-and-dialogue-trees) | Speech keys and linked layouts for picture boards and dialogue trees |
-| [Speech and captions](#speech-and-captions) | Speak each word you type, or a whole phrase from one key, with on-screen captions |
-| [Swipe typing](#swipe-typing) | Drag or click-glide-click across the letters to type a word |
 | [Predictive text and autocorrect](#predictive-text-and-autocorrect) | Suggestions that learn your words, with smart capitals and punctuation |
-| [Hands-free input](#hands-free-input) | Dwell clicking, mouse keys, switch scanning and a minimize tab that reopens without a click |
-| [Themes and colors](#themes-and-colors) | High-contrast themes, keyboard background color, per-key colors and outlines |
-| [Scalable interface](#scalable-interface) | Everything resizes together, from tiny to extra large, with adjustable opacity |
 | [Hold any key](#hold-any-key) | Letters, numbers, F-keys, everything, not just Shift, Ctrl and Alt |
+| [Swipe typing](#swipe-typing) | Drag or click-glide-click across the letters to type a word |
+| [Dwell typing](#dwell-typing) | Rest the pointer on a key and KeyDeck clicks for you |
+| [Mouse keys](#mouse-keys) | Clicks and scrolling on the keyboard itself |
+| [Hands-free browsing](#hands-free-browsing) | Dwell typing, layer keys, mouse keys and the minimize tab working together |
+| [Switch scanning](#switch-scanning) | Row-column scanning for a single switch, with layouts built for it |
+| [Speech and captions](#speech-and-captions) | Speak each word you type, or a whole phrase from one key, with on-screen captions |
+| [Communication boards](#communication-boards-and-dialogue-trees) | Linked layouts of spoken phrases and picture keys, for AAC users |
+| [Pictures and animation](#pictures-and-animation) | Put photos, drawings and animated GIFs on keys |
 | [Types anywhere](#types-anywhere) | Works with games and apps, without stealing focus |
 
 ---
@@ -90,6 +107,32 @@ The [`example loadouts`](example%20loadouts) folder has ready-made layouts to im
 
 To try one, choose **Loadouts → Import layouts**, pick the file, and switch to it. The `KeyDeck example layouts (all in one)` file imports every demo at once, and `KeyDeck dialogue tree (all in one)` imports the whole dialogue tree.
 
+### Scalable interface
+
+KeyDeck can be as big, as small and as see-through as you want. The **whole interface scales together**, not just the keys.
+
+- Choose **Tiny, Very small, Small, Medium, Large or Extra large**, or enter a **custom size** from 14 to 80 pixels.
+- The toolbar buttons, menus, suggestion bar, caption bar and editing panel all grow and shrink with the keys, so nothing looks out of proportion.
+- Key labels shrink and trim themselves to fit, so text never spills over neighboring keys at small sizes.
+- **Opacity** can be set to 100%, 90%, 80%, 70% or 55% under **Settings**, so you can see the window or game behind the keyboard.
+- Pin KeyDeck **always on top** so it stays within reach.
+
+<p align="center">
+  <img src="screenshots/scalability%20and%20opacity.png" alt="KeyDeck at two sizes, the larger one partly transparent over the desktop" width="760"><br>
+  <em>The same keyboard at a small size (top) and a large size with reduced opacity (bottom), showing the desktop through it.</em>
+</p>
+
+### Themes and colors
+
+- **Colour theme**: Dark (default), **High contrast: black and yellow**, or **High contrast: white and black**.
+- **Background color** changes the color behind the keys, toolbar and suggestion bar. **Reset background color** puts the theme's own back.
+- Per-key colors, text colors, outline colors and outline thickness all still apply on top of any theme.
+
+<p align="center">
+  <img src="screenshots/high%20contrast%20.png" alt="KeyDeck in a high contrast theme" width="620"><br>
+  <em>A high-contrast theme.</em>
+</p>
+
 ## Programmable keys
 
 Every button on KeyDeck is programmable. A button is a position, a size, a label and **what it sends**, and you can change each of those independently.
@@ -116,75 +159,17 @@ Thanks for your help!{Enter}
 {Ctrl+Z x3}
 ```
 
-**Mouse keys.** Left, Right, Middle and Double click, plus Scroll Up and Scroll Down, are in the **Sends** list. Press one, move the pointer to the target and hold it still: the click fires after a short, adjustable delay. This is what makes clickless browsing possible.
+**Mouse keys.** Left, Right, Middle and Double click, plus Scroll Up and Scroll Down, are in the **Sends** list. See [Mouse keys](#mouse-keys).
 
 **Layer keys.** **Layer key...** turns a button into a switch to another loadout, either until you switch back or for just the next key press (handy for a one-key Shift or symbols layer). Layers can lead to other layers, so you can build whole menus of layouts.
 
 **Speak keys.** **Program speech...** makes a button say a phrase out loud. See [Speech and captions](#speech-and-captions).
 
+**Picture keys.** **Picture...** puts a photo, drawing or animated GIF on a button. See [Pictures and animation](#pictures-and-animation).
+
 <p align="center">
   <img src="screenshots/programable%20keys.png" alt="A board of large one-click shortcut buttons" width="520"><br>
   <em>A board made entirely of programmed shortcut buttons: Copy, Paste, Alt+Tab, Task Manager and more, each one click.</em>
-</p>
-
-## Pictures and animation
-
-Any key can show a picture. Select a key in **Edit layout** and choose **Picture...**; **Remove picture** takes it away again.
-
-- A key with a label shows the picture with the label as a caption underneath. A key with no label lets the picture fill the whole key.
-- **Animated GIFs play on the keys.** Switch animation off with **Settings → Appearance → Play animated pictures on keys** if motion is distracting; the pictures then show their first frame.
-- Pictures are stored inside the layout, so exporting and importing carries them along.
-- Installing the optional [Pillow](https://python-pillow.org/) package (`python -m pip install pillow`) adds JPG, BMP, WebP and other picture types, smooth scaling, and animation from other formats. Without it, KeyDeck still handles PNG and GIF files up to 400 KB.
-- Large pictures are shrunk automatically to keep layout files a sensible size.
-
-<p align="center">
-  <img src="screenshots/core%20words%20animation.gif" alt="A board of core words, each key showing a small looping animation" width="560"><br>
-  <em>The animated core-words board: every key shows a picture that moves, and pressing it says the word.</em>
-</p>
-
-## Communication boards and dialogue trees
-
-Speak keys, picture keys and layer keys combine into communication boards. The example layouts include two:
-
-- **A dialogue tree** of 23 linked layouts. The home page offers Greetings, Questions, Answers, Feelings, Food and drink, Needs, Small talk and Goodbyes. Each one opens its own page, and some lead to deeper pages (Food and drink → Drinks, Needs → Health, and so on). Every page has a **Home** key in the same corner, and deeper pages also have a **Back** key.
-- **A picture board of 36 core words** with an original picture on each key, color-coded by word type (people, actions, describing words, places and things, social words). A second version has every picture animated.
-
-<p align="center">
-  <img src="screenshots/core%20words%20.png" alt="The core words picture board" width="560"><br>
-  <em>The core-words picture board. Each key shows a picture and says its word when pressed.</em>
-</p>
-
-<!--
-  VIDEO: GitHub only plays a video inline if it is uploaded through the web editor.
-  To show the dialogue tree demo here: edit this README on github.com, drag
-  "speak dialogue tree .mp4" into the editor, and paste the link GitHub gives you on its own line
-  in place of the line below.
--->
-[Watch the dialogue tree demo (MP4)](screenshots/speak%20dialogue%20tree%20.mp4)
-
-The layouts are only a starting point. Use **Program speech...** to change any phrase and **Picture...** to change any picture.
-
-## Speech and captions
-
-- **Speak words.** Switch on **Settings → Speak words** and KeyDeck says each word aloud when you finish it, whether you typed it, swiped it or picked it from the suggestion bar. Speed and volume are adjustable.
-- **Speak keys** say a whole phrase when pressed, even when Speak words is off.
-- **Caption bar.** A strip under the keys shows what was just spoken, so it is visible to people nearby, in screenshots and in recordings. Turn it off under **Settings → Speak words**.
-- Speech uses the Windows voice installed on your computer.
-
-## Swipe typing
-
-Type a word in one gesture across the letters, like on a phone.
-
-- **Hold and drag.** Hold the mouse button on the first letter, drag over the rest of the word and let go.
-- **Click-to-swipe.** For anyone who can't hold a button: click the first letter, glide over the other letters without holding anything, and click the last letter to finish. Choose a style under **Settings → Swipe typing**.
-- Understands **contractions** (don't, I'm, they'll).
-- With **Predictive text** on, other likely words appear in the suggestion bar so you can swap a wrong guess for the right one.
-- **Right-click Backspace** deletes the whole last swiped word at once.
-- A space is added after each swiped word (you can switch this off), and one-letter words such as "a" and "I" get their space too.
-
-<p align="center">
-  <img src="screenshots/swipe%20type.gif" alt="Typing words by dragging across the letters" width="640"><br>
-  <em>Swipe typing: one gesture per word.</em>
 </p>
 
 ## Predictive text and autocorrect
@@ -209,73 +194,6 @@ A suggestion bar above the keys offers predictions as you type, and it gets bett
   <em>After typing "the q" into a text editor, KeyDeck offers "quick", "quickly" and "quite". Click one to finish the word.</em>
 </p>
 
-## Hands-free input
-
-### Dwell clicking
-
-Switch on the **Dwell** button and KeyDeck clicks for you: rest the pointer on a key, a suggestion, a toolbar button or a menu item and a ring fills; when it completes, the click happens. Set the **dwell time**, how **steady** the pointer must be (for tremor), whether it keeps clicking while the pointer rests, and whether the countdown ring shows.
-
-<p align="center">
-  <img src="screenshots/dwell%20type.gif" alt="Typing with dwell clicking, the ring filling over each key" width="640"><br>
-  <em>Dwell typing: rest on a key and the ring fills.</em>
-</p>
-
-### Mouse keys
-
-Mouse keys put clicks and scrolling on the keyboard itself. Press a Mouse key, move the pointer to the target and hold it still: the click fires. Together with dwell clicking, this means you can browse the web without pressing a mouse button.
-
-<p align="center">
-  <img src="screenshots/mouse%20keys%20clickless%20browsing.gif" alt="Browsing a web page using only mouse keys and dwell" width="640"><br>
-  <em>Clickless browsing with mouse keys.</em>
-</p>
-
-### Minimize tab
-
-Dwell users often can't click to get the keyboard out of the way, so KeyDeck has a **Minimize** button on the toolbar. It hides the keyboard and leaves a small tab at the edge of the screen. **Resting the pointer on the tab brings the keyboard back, with no click needed** (a click works too).
-
-- Choose which corner or edge the tab sits on, and how long you must rest on it, under **Settings → Minimize tab**.
-- By default the wait matches your dwell time, with a minimum of half a second, so brushing past it doesn't open the keyboard.
-- When the keyboard reopens, dwell clicking waits until the pointer has moved off that spot, so the key under the pointer isn't pressed by accident.
-
-### Switch scanning
-
-For people who use a single switch, KeyDeck can scan its own keys. Switch it on under **Settings → Switch scanning**. Your switch is a plain **left click** on the keyboard: click once to start, click again when the row you want is highlighted, then click again on the key. Right-click pauses.
-
-- Scan speed, extra time on the first row or key, and how many passes before pausing are all adjustable.
-- Rows are worked out automatically from your layout, and the suggestion bar is scanned as the last row.
-- The example `Scan - ...` layouts use large keys, with the most common letters first so the fewest steps are spent on the keys you use most.
-
-<p align="center">
-  <img src="screenshots/switch%20scanning.gif" alt="Row-column scanning highlighting a row, then a key" width="640"><br>
-  <em>Row-column scanning: pick the row, then the key.</em>
-</p>
-
-## Themes and colors
-
-- **Colour theme**: Dark (default), **High contrast: black and yellow**, or **High contrast: white and black**.
-- **Background color** changes the color behind the keys, toolbar and suggestion bar. **Reset background color** puts the theme's own back.
-- Per-key colors, text colors, outline colors and outline thickness all still apply on top of any theme.
-
-<p align="center">
-  <img src="screenshots/high%20contrast%20.png" alt="KeyDeck in a high contrast theme" width="620"><br>
-  <em>A high-contrast theme.</em>
-</p>
-
-## Scalable interface
-
-KeyDeck can be as big, as small and as see-through as you want. The **whole interface scales together**, not just the keys.
-
-- Choose **Tiny, Very small, Small, Medium, Large or Extra large**, or enter a **custom size** from 14 to 80 pixels.
-- The toolbar buttons, menus, suggestion bar, caption bar and editing panel all grow and shrink with the keys, so nothing looks out of proportion.
-- Key labels shrink and trim themselves to fit, so text never spills over neighboring keys at small sizes.
-- **Opacity** can be set to 100%, 90%, 80%, 70% or 55% under **Settings**, so you can see the window or game behind the keyboard.
-- Pin KeyDeck **always on top** so it stays within reach.
-
-<p align="center">
-  <img src="screenshots/scalability%20and%20opacity.png" alt="KeyDeck at two sizes, the larger one partly transparent over the desktop" width="760"><br>
-  <em>The same keyboard at a small size (top) and a large size with reduced opacity (bottom), showing the desktop through it.</em>
-</p>
-
 ## Hold any key
 
 Most on-screen keyboards let you latch Shift, Ctrl and Alt and nothing else. KeyDeck lets you hold **every** key.
@@ -293,6 +211,135 @@ Modifier keys (Shift, Ctrl, Alt, Win) behave the way you'd expect from an on-scr
   <img src="screenshots/hold.png" alt="Five keys held down at once, shown in orange" width="760"><br>
   <em>Five keys held down at the same time (Q, O, D, J and N), shown in orange.</em>
 </p>
+
+## Swipe typing
+
+Type a word in one gesture across the letters, like on a phone.
+
+- **Hold and drag.** Hold the mouse button on the first letter, drag over the rest of the word and let go.
+- **Click-to-swipe.** For anyone who can't hold a button: click the first letter, glide over the other letters without holding anything, and click the last letter to finish. Choose a style under **Settings → Swipe typing**.
+- Understands **contractions** (don't, I'm, they'll).
+- With **Predictive text** on, other likely words appear in the suggestion bar so you can swap a wrong guess for the right one.
+- **Right-click Backspace** deletes the whole last swiped word at once.
+- A space is added after each swiped word (you can switch this off), and one-letter words such as "a" and "I" get their space too.
+
+<p align="center">
+  <img src="screenshots/swipe%20type.gif" alt="Typing words by dragging across the letters" width="640"><br>
+  <em>Swipe typing: one gesture per word.</em>
+</p>
+
+## Dwell typing
+
+Switch on the **Dwell** button and KeyDeck clicks for you. Rest the pointer on a key, a suggestion, a toolbar button or a menu item and a ring fills; when it completes, the click happens. No mouse button needed.
+
+- **Dwell time**: how long the pointer must rest before the click.
+- **Steadiness**: how far the pointer may drift and still count as resting, for tremor or a shaky hand.
+- **Repeat**: keep clicking for as long as the pointer rests.
+- **Countdown ring**: show or hide the ring that fills as you wait.
+- The **Dwell** button on the toolbar can be shown or hidden. It always works, so dwell can always be switched back on.
+
+All of these are under **Settings → Dwell clicking**.
+
+<p align="center">
+  <img src="screenshots/dwell%20type.gif" alt="Typing with dwell clicking, the ring filling over each key" width="640"><br>
+  <em>Dwell typing: rest on a key and the ring fills.</em>
+</p>
+
+## Mouse keys
+
+Mouse keys put clicks and scrolling on the keyboard itself: **Left, Right, Middle and Double click**, plus **Scroll Up** and **Scroll Down**. Press a mouse key, move the pointer to the target and hold it still: the click fires after a short delay, which you can adjust under **Settings → Mouse keys**.
+
+Add them to any layout from the **Sends** list in Edit layout, or import the `Demo - Mouse keys` example. Together with dwell typing they replace the mouse buttons entirely.
+
+## Hands-free browsing
+
+Dwell typing, layer keys, mouse keys and the minimize tab work together so you can browse the web without pressing a mouse button. The example below shows the whole loop:
+
+1. **Dwell typing** types the address or search into the browser.
+2. A **layer key** switches KeyDeck from the letters to a layout of mouse keys, and another layer key switches back.
+3. **Mouse keys** do the clicking and scrolling: choose Click, move the pointer onto the link and rest, and the click fires. Scroll Up and Scroll Down move the page.
+4. The **Minimize** button hides the keyboard so the whole page is visible. Resting the pointer on the small tab it leaves behind brings the keyboard back, with no click needed.
+
+<p align="center">
+  <img src="screenshots/mouse%20keys%20clickless%20browsing.gif" alt="Browsing a web page using dwell typing, layer keys, mouse keys and the minimize tab" width="640"><br>
+  <em>Clickless browsing: dwell typing, a layer key to the mouse keys, mouse keys to click and scroll, and the minimize tab to get the keyboard out of the way.</em>
+</p>
+
+### The minimize tab
+
+Dwell users often can't click to get the keyboard out of the way, so KeyDeck has a **Minimize** button on the toolbar. It hides the keyboard and leaves a small tab at the edge of the screen. **Resting the pointer on the tab brings the keyboard back, with no click needed** (a click works too).
+
+- Choose which corner or edge the tab sits on, and how long you must rest on it, under **Settings → Minimize tab**.
+- By default the wait matches your dwell time, with a minimum of half a second, so brushing past it doesn't open the keyboard.
+- When the keyboard reopens, dwell clicking waits until the pointer has moved off that spot, so the key under the pointer isn't pressed by accident.
+
+## Switch scanning
+
+For people who use a single switch, KeyDeck can scan its own keys. Switch it on under **Settings → Switch scanning**. Your switch is a plain **left click** on the keyboard: click once to start, click again when the row you want is highlighted, then click again on the key. Right-click pauses.
+
+- Scan speed, extra time on the first row or key, and how many passes before pausing are all adjustable.
+- Rows are worked out automatically from your layout, and the suggestion bar is scanned as the last row.
+- The example `Scan - ...` layouts use large keys, with the most common letters first so the fewest steps are spent on the keys you use most.
+
+<p align="center">
+  <img src="screenshots/switch%20scanning.gif" alt="Row-column scanning highlighting a row, then a key" width="640"><br>
+  <em>Row-column scanning: pick the row, then the key.</em>
+</p>
+
+## Speech and captions
+
+- **Speak words.** Switch on **Settings → Speak words** and KeyDeck says each word aloud when you finish it, whether you typed it, swiped it or picked it from the suggestion bar. Speed and volume are adjustable.
+- **Speak keys** say a whole phrase when pressed, even when Speak words is off. Select a key in Edit layout and choose **Program speech...**.
+- **Caption bar.** A strip under the keys shows what was just spoken, so it is visible to people nearby, in screenshots and in recordings, and to anyone who can't hear. Turn it off under **Settings → Speak words**.
+- Speech uses the Windows voice installed on your computer.
+
+## Communication boards and dialogue trees
+
+Speak keys, picture keys and layer keys combine into communication boards. The example layouts include two:
+
+- **A dialogue tree** of 23 linked layouts. The home page offers Greetings, Questions, Answers, Feelings, Food and drink, Needs, Small talk and Goodbyes. Each one opens its own page, and some lead to deeper pages (Food and drink → Drinks, Needs → Health, and so on). Every page has a **Home** key in the same corner, and deeper pages also have a **Back** key.
+- **A picture board of 36 core words** with an original picture on each key, color-coded by word type (people, actions, describing words, places and things, social words). A second version has every picture animated.
+
+<p align="center">
+  <img src="screenshots/speak%20dialogue%20tree.gif" alt="Moving through the dialogue tree, with each phrase spoken aloud and shown in the caption bar" width="640"><br>
+  <em>The dialogue tree: choose a topic, then a phrase. Each phrase is spoken aloud and shown in the caption bar.</em>
+</p>
+
+<p align="center">
+  <img src="screenshots/core%20words%20animation.gif" alt="A board of 36 core words, each key showing a small looping animation" width="560"><br>
+  <em>The animated core-words board: every key shows a picture that moves, and pressing it says the word.</em>
+</p>
+
+<!--
+  VIDEO: GitHub only plays a video inline if it is uploaded through the web editor.
+  To show the dialogue tree demo with sound here: edit this README on github.com, drag
+  "speak dialogue tree .mp4" into the editor, and paste the link GitHub gives you on its own line
+  in place of the line below.
+-->
+[Watch the dialogue tree demo with sound (MP4)](screenshots/speak%20dialogue%20tree%20.mp4)
+
+### Built with AAC in mind
+
+Augmentative and alternative communication (AAC) means tools and strategies that help people communicate when speech alone isn't enough. Boards like these are likely to be useful to AAC users, including people with severe expressive communication disorders who can't rely on speech to say what they want, need or feel.
+
+- **A voice for every key.** Pressing a key speaks it aloud for the people in the room. The caption bar shows the same words on screen, so they can also be read.
+- **Core words.** The core-words board is built on core vocabulary: a small set of very common words (I, go, more, help, yes, no) that appear in a large share of everyday speech and combine into many different messages. Keys sit in the same place every time, so the board can be learned through repetition, and the color bands by word type (people, actions, describing words, places and things, social words) help the eye find a word.
+- **Pictures and motion.** Each word has a picture, so the board doesn't depend on reading. On the animated version, the pictures move in ways that hint at meaning: the eye looks side to side, the door swings open, the check mark draws itself.
+- **Ready-made phrases.** The dialogue tree groups whole phrases by topic, so a full message takes two or three selections, and the pages that matter most, such as *I need help now!* and Health, are one topic away. A **Home** key in the same corner of every page, plus a **Back** key, means the user is never lost.
+- **Many ways to reach the keys.** The same boards work with a mouse, [dwell typing](#dwell-typing), [click-to-swipe](#swipe-typing) and [switch scanning](#switch-scanning), so the access method can be chosen for the person rather than the board.
+- **Personal.** Use **Program speech...** to change what any key says and **Picture...** to use real photos of the people, places and things in the user's life. Switch animation off if motion is distracting.
+
+KeyDeck is not a clinical tool, and these boards are examples, not a prescribed vocabulary. Choosing an AAC system and its vocabulary is best done with a speech-language pathologist and the people who know the user best. The pictures included here are original drawings made for KeyDeck, not from a commercial symbol set.
+
+## Pictures and animation
+
+Any key can show a picture. Select a key in **Edit layout** and choose **Picture...**; **Remove picture** takes it away again.
+
+- A key with a label shows the picture with the label as a caption underneath. A key with no label lets the picture fill the whole key.
+- **Animated GIFs play on the keys**, as in the animated core-words board above. Switch animation off with **Settings → Appearance → Play animated pictures on keys** if motion is distracting; the pictures then show their first frame.
+- Pictures are stored inside the layout, so exporting and importing carries them along.
+- Installing the optional [Pillow](https://python-pillow.org/) package (`python -m pip install pillow`) adds JPG, BMP, WebP and other picture types, smooth scaling, and animation from other formats. Without it, KeyDeck still handles PNG and GIF files up to 400 KB.
+- Large pictures are shrunk automatically to keep layout files a sensible size.
 
 ## Types anywhere
 
