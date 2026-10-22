@@ -45,6 +45,7 @@ KeyDeck is still growing, and it is shaped by the people who use it. If a featur
 | [Communication boards](#communication-boards-and-dialogue-trees) | Linked layouts of spoken phrases and picture keys, for AAC users |
 | [Pictures and animation](#pictures-and-animation) | Put photos, drawings and animated GIFs on keys |
 | [Types anywhere](#types-anywhere) | Works with games and apps, without stealing focus |
+| [First-run setup](#first-run-setup) | Choose how you type the first time you open it, with warnings for features that don't go together |
 
 ---
 
@@ -362,6 +363,31 @@ python keydeck_plus.py
 ```
 
 Optional: `python -m pip install pillow` for JPG and other picture types, smoother picture scaling and animation from other formats.
+
+### First-run setup
+
+The first time KeyDeck opens, a short setup asks how you want to type, so it starts the way that suits you:
+
+- **Click with the mouse**, the standard way.
+- **Swipe typing**, dragging over the letters (or click, glide, click).
+- **Dwell typing**, resting the pointer on a key to type with no clicking. The setup window itself responds to dwell, so you can get through it without pressing a button.
+- **Switch scanning**, for a single switch.
+
+The second page sets the options for your choice (dwell or scanning speed, how you swipe), the key size and colors, and whether to read words aloud. It also lists the **recommended features**, which start switched on: predictive text, learning your words, gentle autocorrect, automatic capitals and tidy punctuation. If you untick one, the setup tells you what you'd be missing.
+
+The last page explains the combinations that **don't go together**:
+
+| Combination | What happens |
+|---|---|
+| Dwell typing + switch scanning | Can't be used together. Dwell would keep starting and choosing in the scanner. |
+| Switch scanning + swipe typing | Can't be used together. Scanning picks one key at a time, so there is no path to follow. |
+| Dwell typing + swiping by dragging | Dwell can't hold the button down, so swipe typing uses click, glide, click. |
+| Swipe typing without predictive text | Not recommended. The other likely words are how you fix a wrong swipe. |
+| Very quick dwell or scanning times | Not recommended. Under 0.7 s (dwell) or 0.6 s (scanning) is easy to trigger by accident. |
+
+If you turn on one half of a clashing pair later in Settings, KeyDeck switches the other off and says why in the toolbar. It never uses a pop-up for this, so dwell and scanning users can't get stuck behind one.
+
+Run the setup again any time from **Settings, Setup wizard**, and use **Settings, Restore recommended features** to switch the recommended ones back on.
 
 ### Build an executable
 

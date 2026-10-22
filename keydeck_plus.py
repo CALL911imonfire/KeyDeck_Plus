@@ -44,6 +44,8 @@ KEYDECK PLUS (this file) adds, on top of everything above:
   * Switch scanning (row-column) driven by a plain left click, with scanning-friendly layouts.
   * Minimize to a small tab that reopens by resting the pointer on it (no click needed).
   * Import / export of layouts, and example loadouts in the repository.
+  * First-run setup: pick how you type (mouse, swipe, dwell or switch scanning), keep the
+    recommended features on, and get warned about features that can't go together.
 
 Notes
   * Windows only. Layout of key codes assumes a US keyboard layout.
@@ -2228,6 +2230,383 @@ class MinTab:
                       font=("Segoe UI", -max(12, int(h * 0.30)), "bold"))
         c.create_text(w // 2, int(h * 0.68), text="rest the pointer here to open", fill=BTN_FG,
                       font=("Segoe UI", -max(9, int(h * 0.19))))
+# ---- first-run setup: choose how to start, recommended features, conflicting features ----
+SETUP_MODES = (
+    ("mouse", "Click with the mouse",
+     "Click each key. The standard way. Right-click a key to hold it down."),
+    ("swipe", "Swipe typing",
+     "Press on the first letter, drag through the others and let go, and KeyDeck works out "
+     "the word. Click, glide, click works too."),
+    ("dwell", "Dwell typing (no clicking)",
+     "Rest the pointer on a key and KeyDeck clicks for you. Good if pressing a mouse "
+     "button is hard or tiring."),
+    ("scan", "Switch scanning (one switch)",
+     "KeyDeck highlights rows and then keys, one after another, and you click your switch "
+     "to choose. Good if you can only make one movement."),
+)
+
+# (setting, title, what it does, why to keep it on)
+RECOMMENDED = (
+    ("predict", "Predictive text",
+     "Suggests words as you type and between words, so you press fewer keys.",
+     "Predictive text saves the most effort, and with swipe typing it is where the other word choices appear."),
+    ("learn", "Learn my words",
+     "Remembers the words and phrases you use. It stays on your computer.",
+     "Without learning, suggestions never get better at matching how you write."),
+    ("autocorrect", "Autocorrect (gentle)",
+     "Fixes obvious typos when you press Space. Right-click Backspace to undo one.",
+     "Autocorrect catches the slips that are easy to make with an on-screen keyboard."),
+    ("capitalize", "Capital letters for you",
+     "Capitalizes the first word of a sentence and the word I.",
+     "Capitals are one less key to find and press."),
+    ("smart_punct", "Tidy punctuation",
+     "Keeps commas and full stops next to the word before them.",
+     "It removes the stray space before punctuation without any extra keys."),
+)
+
+# Features that cannot or should not be used together, in plain words.  Shown on the last page
+# of the setup, and used to fix a combination automatically when it is switched on later.
+CONFLICT_NOTES = (
+    ("Dwell typing and switch scanning",
+     "Can't be used together. Dwell clicks whenever the pointer rests, so it would keep "
+     "starting and choosing in the scanner."),
+    ("Switch scanning and swipe typing",
+     "Can't be used together. Scanning picks one key at a time, so there is no pointer path to follow."),
+    ("Dwell typing and swiping by dragging",
+     "Dwell can't hold the mouse button down while you move. With dwell, swipe typing uses "
+     "click, glide, click instead."),
+    ("Swipe typing without predictive text",
+     "Not recommended. The other likely words appear in the suggestion bar, and that is how "
+     "you fix a wrong swipe."),
+    ("Very quick dwell or scanning times",
+     "Not recommended. Dwell under 0.7 seconds types letters you only passed over; scanning "
+     "under 0.6 seconds is hard to catch."),
+    ("Mouse keys and switch scanning",
+     "Mouse keys need you to move the pointer to the target, so they don't help while scanning."),
+)
+
+
+def rec_is_on(s, key):
+    if key == "autocorrect":
+        return s.get("autocorrect", "off") != "off"
+    return bool(s.get(key))
+
+
+def setup_conflicts(s):
+    """Problems in a settings dict, as (level, text); level is "block" (can't work) or "warn"."""
+    out = []
+    dwell, scan, swipe = bool(s.get("dwell")), bool(s.get("scan")), bool(s.get("swipe"))
+    if dwell and scan:
+        out.append(("block", "Dwell typing and switch scanning can't be used together."))
+    if scan and swipe:
+        out.append(("block", "Switch scanning and swipe typing can't be used together."))
+    if dwell and swipe and s.get("swipe_style", "drag") != "click":
+        out.append(("block", "Dwell can't drag, so swipe typing has to use click, glide, click."))
+    if swipe and not s.get("predict"):
+        out.append(("warn", "Swipe typing works best with predictive text on: the other likely "
+                            "words appear there when a swipe picks the wrong one."))
+    if dwell and float(s.get("dwell_time", 1.0)) < 0.7:
+        out.append(("warn", "A dwell time under 0.7 seconds will type letters you only passed over."))
+    if scan and float(s.get("scan_speed", 1.0)) < 0.6:
+        out.append(("warn", "Scanning faster than 0.6 seconds per step is hard to catch."))
+    return out
+
+
+def resolve_conflicts(s, prefer=None):
+    """Fix the "block" problems in place.  prefer ("dwell", "scan" or "swipe") says which feature
+    was just switched on and so wins.  Returns plain-language notes of what was changed."""
+    notes = []
+    if s.get("dwell") and s.get("scan"):
+        if prefer == "dwell":
+            s["scan"] = False
+            notes.append("Switch scanning was turned off, because dwell typing can't be used with it.")
+        else:
+            s["dwell"] = False
+            notes.append("Dwell typing was turned off, because switch scanning can't be used with it.")
+    if s.get("scan") and s.get("swipe"):
+        if prefer == "swipe":
+            s["scan"] = False
+            notes.append("Switch scanning was turned off, because it can't be used with swipe typing.")
+        else:
+            s["swipe"] = False
+            notes.append("Swipe typing was turned off, because it can't be used with switch scanning.")
+    if s.get("dwell") and s.get("swipe") and s.get("swipe_style", "drag") != "click":
+        s["swipe_style"] = "click"
+        notes.append("Swipe typing now uses click, glide, click, because dwell can't drag.")
+    return notes
+
+
+def build_setup(mode, o, resolve=True):
+    """Settings to apply for a chosen way of typing (mode) and the options picked (o)."""
+    s = {"dwell": False, "scan": False, "swipe": False}
+    if mode == "swipe":
+        s.update(swipe=True, swipe_style=o.get("swipe_style", "both"),
+                 swipe_space=bool(o.get("swipe_space", True)))
+    elif mode == "dwell":
+        s.update(dwell=True, dwell_button=True, dwell_time=float(o.get("speed", 1.0)),
+                 dwell_ring=bool(o.get("ring", True)))
+        if o.get("swipe"):
+            s.update(swipe=True, swipe_style="click")
+    elif mode == "scan":
+        s.update(scan=True, scan_speed=float(o.get("speed", 1.0)))
+    elif o.get("swipe"):
+        s.update(swipe=True, swipe_style="both")
+    s["unit"] = int(o.get("unit", 38))
+    s["theme"] = o.get("theme", "dark")
+    s["speak"] = bool(o.get("speak"))
+    s["show_caption"] = bool(o.get("caption", True))
+    for key, on in o.get("rec", {}).items():
+        s[key] = ("gentle" if on else "off") if key == "autocorrect" else bool(on)
+    if resolve:
+        resolve_conflicts(s, prefer=mode if mode in ("dwell", "scan", "swipe") else None)
+    return s
+
+
+def build_setup_rec(on):
+    """Settings that switch the given recommended features on or off."""
+    return {k: (("gentle" if v else "off") if k == "autocorrect" else bool(v)) for k, v in on.items()}
+
+
+SETUP_SIZES = (("Small", 30), ("Medium", 38), ("Large", 46), ("Extra large", 54))
+SETUP_SPEEDS = {"dwell": (("Slow  1.5 s", 1.5), ("Normal  1.0 s", 1.0), ("Quick  0.7 s", 0.7)),
+                "scan": (("Slow  1.5 s", 1.5), ("Normal  1.0 s", 1.0), ("Fast  0.6 s", 0.6))}
+
+
+class SetupWizard:
+    """Three pages: how you want to type, the options for that, and what doesn't go together.
+    The buttons are big, and dwell clicking works in this window even while Dwell is off."""
+
+    def __init__(self, app, first=False):
+        self.app = app
+        self.first = first
+        s = app.settings
+        self.page = 0
+        mode = "scan" if s.get("scan") else "dwell" if s.get("dwell") else \
+            "swipe" if s.get("swipe") else "mouse"
+        self.v_mode = tk.StringVar(value=mode)
+        self.v_speed = tk.DoubleVar(value=1.0)
+        self.v_unit = tk.IntVar(value=int(s.get("unit", 38)))
+        self.unit_set = not first
+        self.v_theme = tk.StringVar(value=s.get("theme", "dark"))
+        self.v_swipe = tk.BooleanVar(value=False)
+        self.v_style = tk.StringVar(value=s.get("swipe_style", "both") if s.get("swipe_style") in
+                                    ("drag", "click", "both") else "both")
+        self.v_space = tk.BooleanVar(value=bool(s.get("swipe_space", True)))
+        self.v_ring = tk.BooleanVar(value=bool(s.get("dwell_ring", True)))
+        self.v_speak = tk.BooleanVar(value=bool(s.get("speak")))
+        self.v_caption = tk.BooleanVar(value=bool(s.get("show_caption", True)))
+        self.v_rec = {}
+        for key, _t, _d, _w in RECOMMENDED:
+            on = True if first else rec_is_on(s, key)
+            if key == "autocorrect" and not app.ac.available:
+                on = False
+            self.v_rec[key] = tk.BooleanVar(value=on)
+        self.win = tk.Toplevel(app.root)
+        self.win.title("Welcome to KeyDeck" if first else "KeyDeck setup")
+        self.win.configure(bg=BG)
+        try:
+            self.win.attributes("-topmost", True)
+        except Exception:
+            pass
+        self.win.protocol("WM_DELETE_WINDOW", self.skip)
+        self.nav = tk.Frame(self.win, bg=BG)               # packed first so the buttons never fall off a small screen
+        self.nav.pack(side="bottom", fill="x", padx=26, pady=(4, 18))
+        self.body = tk.Frame(self.win, bg=BG)
+        self.body.pack(side="top", fill="both", expand=True, padx=26, pady=(18, 6))
+        self.wrap = int(560 * max(1.0, app.scale))
+        self.show_page()
+
+    # ---- widgets ----
+    def label(self, parent, text, size=12, bold=False, fg=None, wrap=None, pady=(0, 0), anchor="w"):
+        lb = tk.Label(parent, text=text, bg=parent["bg"], fg=fg or LABEL_FG, justify="left",
+                      font=("Segoe UI", size, "bold" if bold else "normal"), anchor=anchor,
+                      wraplength=wrap or self.wrap)
+        lb.pack(fill="x", pady=pady)
+        return lb
+
+    def button(self, parent, text, cmd, primary=False, side="right"):
+        b = tk.Button(parent, text=text, command=cmd, relief="flat", bd=0, padx=26, pady=12,
+                      bg=PRESS_COLOR if primary else BTN_BG, fg=PRESS_FG if primary else BTN_FG,
+                      activebackground=BTN_ACTIVE, activeforeground=BTN_AFG,
+                      font=("Segoe UI", 13, "bold"))
+        b.pack(side=side, padx=(10, 0))
+        return b
+
+    def choice(self, parent, title, desc, var, value, cmd=None):
+        rb = tk.Radiobutton(parent, text=title + ("\n" + desc if desc else ""), variable=var,
+                            value=value, indicatoron=0, command=cmd, anchor="w", justify="left",
+                            bg=KEY_COLOR, fg=TEXT, selectcolor=PRESS_COLOR,
+                            activebackground=BTN_ACTIVE, activeforeground=BTN_AFG,
+                            relief="flat", bd=0, padx=16, pady=10, wraplength=self.wrap,
+                            font=("Segoe UI", 12))
+        rb.pack(fill="x", pady=4)
+        return rb
+
+    def check(self, parent, text, var, cmd=None):
+        cb = tk.Checkbutton(parent, text=text, variable=var, command=cmd, anchor="w",
+                            justify="left", bg=parent["bg"], fg=LABEL_FG, selectcolor=KEY_COLOR,
+                            activebackground=parent["bg"], activeforeground=LABEL_FG,
+                            font=("Segoe UI", 12), wraplength=int(self.wrap * 0.9))
+        cb.pack(fill="x", pady=3)
+        return cb
+
+    def radios(self, parent, pairs, var, cmd=None):
+        row = tk.Frame(parent, bg=parent["bg"])
+        row.pack(fill="x", pady=(2, 8))
+        for text, value in pairs:
+            tk.Radiobutton(row, text=text, variable=var, value=value, indicatoron=0, command=cmd,
+                           bg=KEY_COLOR, fg=TEXT, selectcolor=PRESS_COLOR,
+                           activebackground=BTN_ACTIVE, activeforeground=BTN_AFG,
+                           relief="flat", bd=0, padx=14, pady=8,
+                           font=("Segoe UI", 11)).pack(side="left", padx=(0, 6))
+        return row
+
+    def clear(self):
+        for fr in (self.body, self.nav):
+            for w in fr.winfo_children():
+                w.destroy()
+
+    # ---- pages ----
+    def show_page(self):
+        self.clear()
+        (self.page_choose, self.page_options, self.page_notes)[self.page]()
+        self.center()
+
+    def page_choose(self):
+        self.label(self.body, "Welcome to KeyDeck" if self.first else "How do you want to type?",
+                   size=20, bold=True, fg=TEXT)
+        self.label(self.body, "How do you want to type? Pick the way that suits you. KeyDeck "
+                   "starts set up for it, and you can change anything later in Settings.",
+                   pady=(4, 12))
+        for value, title, desc in SETUP_MODES:
+            self.choice(self.body, title, desc, self.v_mode, value)
+        self.button(self.nav, "Next ▸", self.go_next, primary=True)
+        self.button(self.nav, "Skip setup", self.skip)
+
+    def page_options(self):
+        mode = self.v_mode.get()
+        if not self.unit_set:
+            self.v_unit.set(46 if mode in ("dwell", "scan") else 38)
+        title = dict((m[0], m[1]) for m in SETUP_MODES)[mode]
+        self.label(self.body, title, size=18, bold=True, fg=TEXT)
+        cols = tk.Frame(self.body, bg=BG)
+        cols.pack(fill="both", expand=True, pady=(8, 0))
+        left = tk.Frame(cols, bg=BG)
+        left.pack(side="left", fill="both", expand=True, padx=(0, 22), anchor="n")
+        right = tk.Frame(cols, bg=PANEL)
+        right.pack(side="left", fill="both", expand=True, anchor="n")
+        half = int(self.wrap * 0.8)
+        self.label(left, "Options", size=13, bold=True, fg=TEXT, wrap=half, pady=(0, 4))
+        if mode in ("dwell", "scan"):
+            self.label(left, "Time on each key" if mode == "dwell" else "Time on each row and key",
+                       wrap=half)
+            self.radios(left, SETUP_SPEEDS[mode], self.v_speed, self.refresh)
+            self.v_speed.set(min((v for _t, v in SETUP_SPEEDS[mode]),
+                                 key=lambda v: abs(v - float(self.v_speed.get()))))
+        if mode == "dwell":
+            self.check(left, "Show the ring that fills while I wait", self.v_ring)
+        if mode == "swipe":
+            self.label(left, "How I swipe", wrap=half)
+            self.radios(left, (("Drag", "drag"), ("Click, glide, click", "click"),
+                               ("Either", "both")), self.v_style, self.refresh)
+            self.check(left, "Add a space after each swiped word", self.v_space)
+        if mode in ("mouse", "dwell"):
+            self.check(left, "Swipe typing too" + (" (click, glide, click)" if mode == "dwell" else ""),
+                       self.v_swipe, self.refresh)
+        self.label(left, "Key size", wrap=half, pady=(8, 0))
+        self.radios(left, SETUP_SIZES, self.v_unit, self.size_changed)
+        self.label(left, "Colors", wrap=half)
+        self.radios(left, (("Dark", "dark"), ("Black and yellow", "hc_dark"),
+                           ("White and black", "hc_light")), self.v_theme)
+        self.check(left, "Read each word aloud as I finish it", self.v_speak)
+        self.check(left, "Show spoken text in a caption bar", self.v_caption)
+
+        self.label(right, "  Recommended: keep these on", size=13, bold=True, fg=TEXT,
+                   wrap=half, pady=(8, 4))
+        for key, name, desc, _why in RECOMMENDED:
+            if key == "autocorrect" and not self.app.ac.available:
+                self.label(right, "Autocorrect needs keydeck_words.py next to KeyDeck, so it "
+                           "is off for now.", size=11, fg=MUTED_FG, wrap=half)
+                continue
+            self.check(right, "%s\n%s" % (name, desc), self.v_rec[key], self.refresh)
+        self.warn = tk.Label(right, text="", bg=PANEL, fg="#ffb347", justify="left", anchor="w",
+                             wraplength=half, font=("Segoe UI", 11))
+        self.warn.pack(fill="x", padx=10, pady=(10, 10))
+        self.refresh()
+        self.button(self.nav, "Next ▸", self.go_next, primary=True)
+        self.button(self.nav, "◂ Back", self.go_back)
+
+    def page_notes(self):
+        mode = self.v_mode.get()
+        self.label(self.body, "Good to know", size=20, bold=True, fg=TEXT)
+        self.label(self.body, "These features don't go together. KeyDeck switches one off for "
+                   "you if you turn on a clashing pair later, and tells you why.", pady=(4, 8))
+        for name, text in CONFLICT_NOTES:
+            self.label(self.body, name, size=12, bold=True, fg=TEXT, pady=(6, 0))
+            self.label(self.body, text, size=11, fg=MUTED_FG)
+        self.label(self.body, "You can run this setup again from Settings ▸ Setup wizard, and "
+                   "Settings ▸ Restore recommended features turns the recommended ones "
+                   "back on.", pady=(14, 0))
+        self.button(self.nav, "Start typing", self.finish, primary=True)
+        self.button(self.nav, "◂ Back", self.go_back)
+
+    # ---- actions ----
+    def size_changed(self):
+        self.unit_set = True
+
+    def options(self):
+        return {"speed": self.v_speed.get(), "unit": self.v_unit.get(), "theme": self.v_theme.get(),
+                "swipe": self.v_swipe.get(), "swipe_style": self.v_style.get(),
+                "swipe_space": self.v_space.get(), "ring": self.v_ring.get(),
+                "speak": self.v_speak.get(), "caption": self.v_caption.get(),
+                "rec": {k: v.get() for k, v in self.v_rec.items()}}
+
+    def refresh(self):
+        """Tips for the options as they stand."""
+        mode = self.v_mode.get()
+        o = self.options()
+        s = build_setup(mode, o, resolve=False)
+        lines = [t for _lvl, t in setup_conflicts(s)
+                 if not t.startswith("Dwell can't drag")]
+        for key, name, _d, why in RECOMMENDED:
+            if key == "autocorrect" and not self.app.ac.available:
+                continue
+            if key in self.v_rec and not self.v_rec[key].get():
+                lines.append("%s is off. %s" % (name, why))
+        try:
+            self.warn.config(text="\n\n".join("⚠ " + t for t in lines))
+        except Exception:
+            pass
+
+    def go_next(self):
+        self.page += 1
+        self.show_page()
+
+    def go_back(self):
+        self.page -= 1
+        self.show_page()
+
+    def center(self):
+        w = self.win
+        w.update_idletasks()
+        W, H = w.winfo_reqwidth(), w.winfo_reqheight()
+        sw, sh = w.winfo_screenwidth(), w.winfo_screenheight()
+        w.geometry("+%d+%d" % (max(0, (sw - W) // 2), max(0, (sh - H) // 3)))
+
+    def close(self):
+        self.app.setup = None
+        try:
+            self.win.destroy()
+        except Exception:
+            pass
+
+    def skip(self):
+        self.app.setup_finished(None)
+        self.close()
+
+    def finish(self):
+        self.app.setup_finished(build_setup(self.v_mode.get(), self.options()))
+        self.close()
 CAPTION_IDLE = "Spoken text shows here"
 
 # --------------------------------------------------------------------------
@@ -2268,7 +2647,11 @@ class KeyDeck:
 
     def __init__(self, root):
         self.root = root
+        self.first_run = not os.path.exists(SETTINGS_FILE)
         self.settings = load_settings()
+        if self.first_run:
+            self.settings["setup_done"] = False       # the setup shows until it is finished or skipped
+        self.setup = None
         self.sender = KeySender(self.settings["scancode"])
         self.keys = []
         self.states = {}          # key id -> "mom" | "oneshot" | "hold"
@@ -2358,6 +2741,7 @@ class KeyDeck:
         root.protocol("WM_DELETE_WINDOW", self.on_close)
         atexit.register(self.emergency_release)
         atexit.register(self.pt.save)
+        self.root.after(500, self.maybe_first_run)
 
     # ---------------- window helpers ----------------
     def apply_noactivate(self, on):
@@ -2489,7 +2873,7 @@ class KeyDeck:
         self.v_unit = tk.IntVar(value=int(self.settings["unit"]))
         self.v_opacity = tk.DoubleVar(value=float(self.settings["opacity"]))
         self.v_topmost = tk.BooleanVar(value=bool(self.settings["topmost"]))
-        self.v_scan = tk.BooleanVar(value=bool(self.settings["scancode"]))
+        self.v_scancode = tk.BooleanVar(value=bool(self.settings["scancode"]))
         self.v_oneshot = tk.BooleanVar(value=bool(self.settings["oneshot"]))
         self.v_repeat = tk.BooleanVar(value=bool(self.settings["repeat"]))
         self.v_predict = tk.BooleanVar(value=bool(self.settings["predict"]))
@@ -2566,7 +2950,7 @@ class KeyDeck:
 
         typing_menu = tk.Menu(menu, tearoff=0)
         typing_menu.add_checkbutton(label="Send hardware scan codes (best for games)",
-                                    variable=self.v_scan, command=self.on_setting_change)
+                                    variable=self.v_scancode, command=self.on_setting_change)
         typing_menu.add_checkbutton(label="Modifiers release after the next key",
                                     variable=self.v_oneshot, command=self.on_setting_change)
         typing_menu.add_checkbutton(label="Auto-repeat when a key is pressed and held",
@@ -2698,6 +3082,9 @@ class KeyDeck:
         dwell_menu.add_checkbutton(label="Show the Dwell button on the toolbar",
                                    variable=self.v_dwellbtn, command=self.on_dwell_btn_change)
         menu.add_cascade(label="Dwell clicking", menu=dwell_menu)
+        menu.add_separator()
+        menu.add_command(label="Setup wizard\u2026", command=lambda: self.open_setup(False))
+        menu.add_command(label="Restore recommended features", command=self.restore_recommended)
 
         self.menus = [self.loadout_menu, menu, appear_menu, size_menu, op_menu, typing_menu,
                       predict_menu, cap_menu, ac_menu, swipe_menu, mouse_menu, md_menu, dwell_menu, dt_menu,
@@ -2769,11 +3156,12 @@ class KeyDeck:
 
     def on_setting_change(self):
         s = self.settings
+        prev = (bool(s["scan"]), bool(s["swipe"]), bool(s["dwell"]), s.get("swipe_style"))
         s["unit"] = max(14, min(80, int(self.v_unit.get())))
         self.update_hint()
         s["opacity"] = float(self.v_opacity.get())
         s["topmost"] = bool(self.v_topmost.get())
-        s["scancode"] = bool(self.v_scan.get())
+        s["scancode"] = bool(self.v_scancode.get())
         s["oneshot"] = bool(self.v_oneshot.get())
         s["repeat"] = bool(self.v_repeat.get())
         s["predict"] = bool(self.v_predict.get())
@@ -2815,6 +3203,8 @@ class KeyDeck:
         style = self.v_swipe_style.get()
         s["swipe_style"] = style if style in ("drag", "click", "both") else "drag"
         self.cswipe_cancel()
+        if not getattr(self, "_applying", False):
+            self.live_conflicts(prev)
         s["speak"] = bool(self.v_speak.get())
         s["speak_rate"] = int(self.v_speak_rate.get())
         s["speak_volume"] = int(self.v_speak_vol.get())
@@ -4098,6 +4488,14 @@ class KeyDeck:
 
     def toggle_dwell(self):
         self.settings["dwell"] = not self.settings["dwell"]
+        if self.settings["dwell"]:
+            notes = resolve_conflicts(self.settings, prefer="dwell")
+            if notes:
+                self.v_scan.set(bool(self.settings["scan"]))
+                self.v_swipe_style.set(self.settings["swipe_style"])
+                self.scan_apply()
+                self.cswipe_cancel()
+                self.tell(" ".join(notes))
         self.dwell_engine.reset()
         self.ring.hide()
         self.update_dwell_btn()
@@ -4146,9 +4544,13 @@ class KeyDeck:
         user32.GetWindowThreadProcessId(top, ctypes.byref(pid))
         if pid.value != kernel32.GetCurrentProcessId():
             return None                                   # another program's window or menu
+        own = user32.GetParent(self.root.winfo_id()) or self.root.winfo_id()
+        if top == own:
+            return None                                   # KeyDeck's own window has its own rules
         buf = ctypes.create_unicode_buffer(32)
         user32.GetClassNameW(top, buf, 32)
-        return top if buf.value == "#32768" else None     # "#32768" is the Windows menu class
+        # "#32768" is the Windows menu class, "#32770" a message or file box, "TkTopLevel" a Tk dialog
+        return top if buf.value in ("#32768", "#32770", "TkTopLevel") else None
 
     def dwell_token(self, pos, active):
         """What the pointer is over, as a hashable token, or None where dwell must not click.
@@ -4164,7 +4566,7 @@ class KeyDeck:
         if self.settings["dwell_button"] and self.rect_has(self.widget_rect(self.dwell_btn), pos):
             return ("dwell-button",)
         if not active:
-            return None
+            return self.wizard_token(pos)
         if self.rect_has(self.client_rect(), pos):
             cx1, cy1, cx2, cy2 = self.widget_rect(self.canvas)
             if cx1 <= pos[0] < cx2 and cy1 <= pos[1] < cy2:
@@ -4178,6 +4580,22 @@ class KeyDeck:
             return ("widget", str(w))
         popup = self.over_own_popup(pos)
         return ("popup", popup) if popup else None
+
+    def wizard_token(self, pos):
+        """The setup window answers to dwell clicking even while Dwell is off, so a new
+        dwell user is not stuck on the first screen.  Its client area only, never the title bar."""
+        wiz = getattr(self, "setup", None)
+        if wiz is None or not IS_WIN:
+            return None
+        try:
+            w = wiz.win
+            rect = (w.winfo_rootx(), w.winfo_rooty(), w.winfo_rootx() + w.winfo_width(),
+                    w.winfo_rooty() + w.winfo_height())
+            if not self.rect_has(rect, pos):
+                return None
+            return ("wizard", str(w.winfo_containing(pos[0], pos[1])))
+        except Exception:
+            return None
 
     def dwell_poll(self):
         try:
@@ -5166,6 +5584,107 @@ class KeyDeck:
         self.root.update_idletasks()
         self.keep_on_screen()
 
+    # ---------------- first-run setup ----------------
+    def open_setup(self, first=False):
+        if getattr(self, "setup", None) is not None:
+            try:
+                self.setup.win.lift()
+            except Exception:
+                pass
+            return
+        self.setup = SetupWizard(self, first)
+
+    def maybe_first_run(self):
+        """Offer the setup the first time KeyDeck runs (and until it has been finished or skipped)."""
+        if self.settings.get("setup_done") is False:
+            self.open_setup(first=True)
+
+    def setup_finished(self, chosen):
+        """Apply what the setup picked (None = skipped) and remember that it has been done."""
+        self.settings["setup_done"] = True
+        if chosen:
+            self.apply_setup(chosen)
+        else:
+            save_settings(self.settings)
+
+    def apply_setup(self, chosen):
+        """Put a dict of settings into effect: the menu variables first, then the live pieces."""
+        s = self.settings
+        pairs = (("predict", self.v_predict), ("learn", self.v_learn), ("capitalize", self.v_cap),
+                 ("smart_punct", self.v_punct), ("swipe", self.v_swipe),
+                 ("swipe_space", self.v_swipe_space), ("swipe_style", self.v_swipe_style),
+                 ("scan", self.v_scan), ("scan_speed", self.v_scan_speed),
+                 ("speak", self.v_speak), ("show_caption", self.v_caption),
+                 ("unit", self.v_unit), ("theme", self.v_theme), ("autocorrect", self.v_ac),
+                 ("dwell_time", self.v_dtime), ("dwell_ring", self.v_dring))
+        for key, var in pairs:
+            if key in chosen:
+                var.set(chosen[key])
+        if "dwell_button" in chosen:
+            s["dwell_button"] = bool(chosen["dwell_button"])
+            self.v_dwellbtn.set(s["dwell_button"])
+            if s["dwell_button"]:
+                self.dwell_btn.pack(side="left", after=self.hold_btn)
+        if "dwell" in chosen:
+            s["dwell"] = bool(chosen["dwell"])
+        self._applying = True
+        try:
+            self.on_setting_change()
+        finally:
+            self._applying = False
+        if "dwell" in chosen:
+            self.dwell_engine.reset()
+            self.ring.hide()
+            self.update_dwell_btn()
+            self.apply_ui_scale()
+        save_settings(s)
+
+    def restore_recommended(self):
+        """Switch the recommended features back on."""
+        on = {key: True for key, _t, _d, _w in RECOMMENDED}
+        if not self.ac.available:
+            on.pop("autocorrect")
+        self.apply_setup(build_setup_rec(on))
+
+    def tell(self, text):
+        """A short notice in the toolbar hint (it never blocks, so dwell and scanning users can't get stuck)."""
+        hint = getattr(self, "hint", None)
+        if hint is None:
+            return
+        try:
+            hint.config(text=text)
+            if getattr(self, "tell_job", None) is not None:
+                self.root.after_cancel(self.tell_job)
+            self.tell_job = self.root.after(9000, self.scan_apply)       # puts the normal hint back
+        except Exception:
+            pass
+
+    def live_conflicts(self, prev):
+        """Called after a setting menu change: if it switched on one half of a clashing pair, fix
+        the pair, bring the menu variables back in line and say what happened."""
+        s = self.settings
+        was_scan, was_swipe, was_dwell, was_style = prev
+        prefer = None
+        if s["scan"] and not was_scan:
+            prefer = "scan"
+        elif s["swipe"] and not was_swipe:
+            prefer = "swipe"
+        elif s["swipe"] and s.get("swipe_style") != was_style:
+            prefer = "swipe"
+        if prefer is None:
+            if s["swipe"] and not s["predict"]:
+                self.tell("Tip: swipe typing works best with predictive text on.")
+            return
+        notes = resolve_conflicts(s, prefer=prefer)
+        if notes:
+            self.v_scan.set(bool(s["scan"]))
+            self.v_swipe.set(bool(s["swipe"]))
+            self.v_swipe_style.set(s["swipe_style"])
+            if not s["dwell"] and was_dwell:
+                self.dwell_engine.reset()
+                self.ring.hide()
+                self.update_dwell_btn()
+            self.tell(" ".join(notes))
     # ---------------- themes ----------------
     def recolor_ui(self, old):
         """The theme changed while running: swap the colours of every widget and redraw the keys."""
