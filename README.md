@@ -39,7 +39,7 @@ KeyDeck is still growing, and it is shaped by the people who use it. If a featur
 | [Swipe typing](#swipe-typing) | Drag or click-glide-click across the letters to type a word |
 | [Dwell typing](#dwell-typing) | Rest the pointer on a key and KeyDeck clicks for you |
 | [Mouse keys](#mouse-keys) | Clicks and scrolling on the keyboard itself |
-| [Hands-free browsing](#hands-free-browsing) | Dwell typing, layer keys, mouse keys and the minimize tab working together |
+| [Click-free browsing](#click-free-browsing) | Dwell typing, layer keys, mouse keys and the minimize tab working together |
 | [Switch scanning](#switch-scanning) | Row-column scanning for a single switch, with layouts built for it |
 | [Speech and captions](#speech-and-captions) | Speak each word you type, or a whole phrase from one key, with on-screen captions |
 | [Communication boards](#communication-boards-and-dialogue-trees) | Linked layouts of spoken phrases and picture keys, for AAC users |
@@ -252,7 +252,7 @@ Mouse keys put clicks and scrolling on the keyboard itself: **Left, Right, Middl
 
 Add them to any layout from the **Sends** list in Edit layout, or import the `Demo - Mouse keys` example. Together with dwell typing they replace the mouse buttons entirely.
 
-## Hands-free browsing
+## Click-free browsing
 
 Dwell typing, layer keys, mouse keys and the minimize tab work together so you can browse the web without pressing a mouse button. The example below shows the whole loop:
 
