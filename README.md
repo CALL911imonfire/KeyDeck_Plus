@@ -104,6 +104,7 @@ The [`example loadouts`](example%20loadouts) folder has ready-made layouts to im
 | `Scan - Letters / Numbers and symbols / Editing` | Large-key layouts made for [switch scanning](#switch-scanning) |
 | `Talk - ...` (23 layouts, in `dialogue tree`) | A linked [dialogue tree](#communication-boards-and-dialogue-trees) of spoken phrases |
 | `Core words - Picture board` and `Core words - Animated board` | A 6x6 [picture communication board](#communication-boards-and-dialogue-trees) |
+| `NoteDeck - Keyboard entry` | One key per note and length (C to B with sharps and flats, ½ to 4 beats), rests and octave keys, for a music app that needs a length key held while the note is pressed |
 | `Test - Pictures` | Still and animated pictures, for checking that import works |
 
 To try one, choose **Loadouts → Import layouts**, pick the file, and switch to it. The `KeyDeck example layouts (all in one)` file imports every demo at once, and `KeyDeck dialogue tree (all in one)` imports the whole dialogue tree.
@@ -159,6 +160,8 @@ Thanks for your help!{Enter}
 {Ctrl+A}{Ctrl+C}{Wait 300}{Alt+Tab}{Ctrl+V}
 {Ctrl+Z x3}
 ```
+
+For programs that need one key held while another is pressed, `{Hold 3}` presses a key and keeps it down until `{Release 3}`. For example, `{Hold 3}{Wait 30}{A}{Wait 30}{Release 3}` holds 3 while it taps A. If you stop a macro part-way, KeyDeck lets go of anything it was holding.
 
 **Mouse keys.** Left, Right, Middle and Double click, plus Scroll Up and Scroll Down, are in the **Sends** list. See [Mouse keys](#mouse-keys).
 

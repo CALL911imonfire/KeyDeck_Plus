@@ -26,6 +26,7 @@ KEYDECK PLUS (this file) adds, on top of everything above:
   * Macro keys: one button types a phrase or runs a key sequence, e.g.
         Thanks for your help!{Enter}      or      {Ctrl+A}{Ctrl+C}{Wait 300}{Alt+Tab}{Ctrl+V}
     Edit Layout -> select a key -> "Program macro...".
+    {Hold 3}{A}{Release 3} keeps a key held down while other steps run.
   * Mouse keys (Sends list): Left / Right / Middle / Double click, Scroll Up / Down.
     Press one, move the pointer to the target and hold it still; the click fires.
   * Layer keys: a button that switches to another loadout, either for good or just for
@@ -1097,12 +1098,14 @@ CHAR_KEYS[" "] = ("Space", False)
 MAX_MACRO_STEPS = 3000
 _WAIT_RE = re.compile(r"wait\s+(\d+(?:\.\d+)?)\s*(ms|s)?$", re.I)
 _REPEAT_RE = re.compile(r"(.+?)\s+x\s*(\d{1,2})$", re.I)
+_HOLD_RE = re.compile(r"(hold|release)\s+(\S.*)$", re.I)
 
 MACRO_HELP = (
     "Type the text this key should type. Put special keys inside { }:\n"
     "    {Enter}   {Tab}   {Esc}   {Ctrl+C}   {Ctrl+Shift+Esc}   {F5}\n"
     "    {Wait 500}  pauses 500 milliseconds   ({Wait 1.5s} for seconds)\n"
     "    {Tab x3}  repeats a key 3 times\n"
+    "    {Hold 3}  holds a key down until {Release 3}  (for programs that need a key held)\n"
     "A line break presses Enter.  Use {{ and }} for literal braces."
 )
 
@@ -1118,6 +1121,13 @@ def _macro_token(body, steps):
             return "A {Wait} can be at most 60 seconds."
         steps.append(("wait", int(ms)))
         return None
+    hm = _HOLD_RE.match(body)
+    if hm:
+        name = resolve_key(hm.group(2).strip())
+        if name is None:
+            return "I don't recognize the key '%s'." % hm.group(2).strip()
+        steps.append((hm.group(1).lower(), name))
+        return None
     count = 1
     rm = _REPEAT_RE.match(body)
     if rm:
@@ -1132,7 +1142,7 @@ def _macro_token(body, steps):
 
 
 def parse_macro(text):
-    """Turn macro text into steps: ('type', ch) / ('chord', [names]) / ('wait', ms).
+    """Turn macro text into steps: ('type', ch) / ('chord', [names]) / ('wait', ms) / ('hold', name) / ('release', name).
 
     Returns (steps, None) or (None, 'error text')."""
     steps = []
@@ -4232,6 +4242,12 @@ class KeyDeck:
                     return
                 if step[0] == "chord":
                     self.send_shortcut(step[1])
+                elif step[0] == "hold":
+                    self.__dict__.setdefault("macro_held", set()).add(step[1])
+                    self.sender.send(step[1], True)
+                elif step[0] == "release":
+                    self.__dict__.setdefault("macro_held", set()).discard(step[1])
+                    self.sender.send(step[1], False)
                 else:
                     self.type_char(step[1])
                 done += 1
@@ -4266,6 +4282,9 @@ class KeyDeck:
                 pass
             self.macro_job = None
         self.macro_queue.clear()
+        for name in list(self.__dict__.get("macro_held") or ()):
+            self.sender.send(name, False)               # never leave a key held down
+        self.__dict__["macro_held"] = set()
         kid, self.macro_id = self.macro_id, None
         if redraw and kid is not None:
             k = self.key_by_id(kid)
