@@ -1,0 +1,1384 @@
+{
+  "version": 1,
+  "keys": [
+    {
+      "key": "V",
+      "label": "Selection\nV",
+      "label2": "",
+      "x": 0.25,
+      "y": 0.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "A",
+      "label": "Direct sel.\nA",
+      "label2": "",
+      "x": 2.0,
+      "y": 0.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Y",
+      "label": "Magic wand\nY",
+      "label2": "",
+      "x": 3.75,
+      "y": 0.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Q",
+      "label": "Lasso\nQ",
+      "label2": "",
+      "x": 5.5,
+      "y": 0.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "P",
+      "label": "Pen\nP",
+      "label2": "",
+      "x": 7.25,
+      "y": 0.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Shortcut",
+      "label": "Curvature\nShift+`",
+      "label2": "",
+      "x": 9.0,
+      "y": 0.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "`"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Convert\nanchor",
+      "label2": "",
+      "x": 10.75,
+      "y": 0.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "C"
+      ]
+    },
+    {
+      "key": "T",
+      "label": "Type\nT",
+      "label2": "",
+      "x": 12.5,
+      "y": 0.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "\\",
+      "label": "Line\n\\",
+      "label2": "",
+      "x": 14.25,
+      "y": 0.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "M",
+      "label": "Rectangle\nM",
+      "label2": "",
+      "x": 16.0,
+      "y": 0.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "L",
+      "label": "Ellipse\nL",
+      "label2": "",
+      "x": 0.25,
+      "y": 1.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "N",
+      "label": "Pencil\nN",
+      "label2": "",
+      "x": 2.0,
+      "y": 1.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "B",
+      "label": "Brush\nB",
+      "label2": "",
+      "x": 3.75,
+      "y": 1.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Shortcut",
+      "label": "Blob brush\nShift+B",
+      "label2": "",
+      "x": 5.5,
+      "y": 1.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "B"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Eraser\nShift+E",
+      "label2": "",
+      "x": 7.25,
+      "y": 1.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "E"
+      ]
+    },
+    {
+      "key": "C",
+      "label": "Scissors\nC",
+      "label2": "",
+      "x": 9.0,
+      "y": 1.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "R",
+      "label": "Rotate\nR",
+      "label2": "",
+      "x": 10.75,
+      "y": 1.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "O",
+      "label": "Reflect\nO",
+      "label2": "",
+      "x": 12.5,
+      "y": 1.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "S",
+      "label": "Scale\nS",
+      "label2": "",
+      "x": 14.25,
+      "y": 1.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Shortcut",
+      "label": "Width\nShift+W",
+      "label2": "",
+      "x": 16.0,
+      "y": 1.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "W"
+      ]
+    },
+    {
+      "key": "E",
+      "label": "Free\ntransform E",
+      "label2": "",
+      "x": 0.25,
+      "y": 2.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Shortcut",
+      "label": "Shape\nbuilder",
+      "label2": "",
+      "x": 2.0,
+      "y": 2.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "M"
+      ]
+    },
+    {
+      "key": "I",
+      "label": "Eyedropper\nI",
+      "label2": "",
+      "x": 3.75,
+      "y": 2.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "G",
+      "label": "Gradient\nG",
+      "label2": "",
+      "x": 5.5,
+      "y": 2.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Shortcut",
+      "label": "Artboard\nShift+O",
+      "label2": "",
+      "x": 7.25,
+      "y": 2.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "O"
+      ]
+    },
+    {
+      "key": "H",
+      "label": "Hand\nH",
+      "label2": "",
+      "x": 9.0,
+      "y": 2.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Z",
+      "label": "Zoom\nZ",
+      "label2": "",
+      "x": 10.75,
+      "y": 2.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2f6fb5",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Shortcut",
+      "label": "Swap fill\n& stroke",
+      "label2": "",
+      "x": 0.25,
+      "y": 4.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#b5602f",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "X"
+      ]
+    },
+    {
+      "key": "X",
+      "label": "Fill / stroke\nX",
+      "label2": "",
+      "x": 2.0,
+      "y": 4.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#b5602f",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "D",
+      "label": "Default\ncolors D",
+      "label2": "",
+      "x": 3.75,
+      "y": 4.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#b5602f",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "/",
+      "label": "None\n/",
+      "label2": "",
+      "x": 5.5,
+      "y": 4.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#b5602f",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "LShift",
+      "label": "Shift",
+      "label2": "",
+      "x": 7.25,
+      "y": 4.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#b5602f",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "LCtrl",
+      "label": "Ctrl",
+      "label2": "",
+      "x": 9.0,
+      "y": 4.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#b5602f",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "LAlt",
+      "label": "Alt",
+      "label2": "",
+      "x": 10.75,
+      "y": 4.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#b5602f",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Space",
+      "label": "Space\n(hand)",
+      "label2": "",
+      "x": 12.5,
+      "y": 4.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#b5602f",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Tab",
+      "label": "Tab\nhide panels",
+      "label2": "",
+      "x": 14.25,
+      "y": 4.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#b5602f",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "F",
+      "label": "Screen\nmode F",
+      "label2": "",
+      "x": 16.0,
+      "y": 4.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#b5602f",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Shortcut",
+      "label": "Group\nCtrl+G",
+      "label2": "",
+      "x": 0.25,
+      "y": 5.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#7d3c98",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "G"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Ungroup",
+      "label2": "",
+      "x": 2.0,
+      "y": 5.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#7d3c98",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "LCtrl",
+        "G"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Lock\nCtrl+2",
+      "label2": "",
+      "x": 3.75,
+      "y": 5.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#7d3c98",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "2"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Unlock all",
+      "label2": "",
+      "x": 5.5,
+      "y": 5.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#7d3c98",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LAlt",
+        "LCtrl",
+        "2"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Hide\nCtrl+3",
+      "label2": "",
+      "x": 7.25,
+      "y": 5.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#7d3c98",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "3"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Show all",
+      "label2": "",
+      "x": 9.0,
+      "y": 5.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#7d3c98",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LAlt",
+        "LCtrl",
+        "3"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Bring to\nfront",
+      "label2": "",
+      "x": 10.75,
+      "y": 5.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#7d3c98",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "LCtrl",
+        "]"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Bring\nforward",
+      "label2": "",
+      "x": 12.5,
+      "y": 5.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#7d3c98",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "]"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Send\nbackward",
+      "label2": "",
+      "x": 14.25,
+      "y": 5.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#7d3c98",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "["
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Send to\nback",
+      "label2": "",
+      "x": 16.0,
+      "y": 5.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#7d3c98",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "LCtrl",
+        "["
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Cut\nCtrl+X",
+      "label2": "",
+      "x": 0.25,
+      "y": 6.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "X"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Copy\nCtrl+C",
+      "label2": "",
+      "x": 2.0,
+      "y": 6.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "C"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Paste\nCtrl+V",
+      "label2": "",
+      "x": 3.75,
+      "y": 6.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "V"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Paste in\nfront",
+      "label2": "",
+      "x": 5.5,
+      "y": 6.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "F"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Paste at\nback",
+      "label2": "",
+      "x": 7.25,
+      "y": 6.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "B"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Paste in\nplace",
+      "label2": "",
+      "x": 9.0,
+      "y": 6.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "LCtrl",
+        "V"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Undo\nCtrl+Z",
+      "label2": "",
+      "x": 10.75,
+      "y": 6.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "Z"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Redo",
+      "label2": "",
+      "x": 12.5,
+      "y": 6.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "LCtrl",
+        "Z"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Transform\nagain",
+      "label2": "",
+      "x": 14.25,
+      "y": 6.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "D"
+      ]
+    },
+    {
+      "key": "Delete",
+      "label": "Delete",
+      "label2": "",
+      "x": 16.0,
+      "y": 6.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null
+    },
+    {
+      "key": "Shortcut",
+      "label": "Select all\nCtrl+A",
+      "label2": "",
+      "x": 0.25,
+      "y": 7.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "A"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Deselect",
+      "label2": "",
+      "x": 2.0,
+      "y": 7.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "LCtrl",
+        "A"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Reselect\nCtrl+6",
+      "label2": "",
+      "x": 3.75,
+      "y": 7.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "6"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Make\ncompound",
+      "label2": "",
+      "x": 5.5,
+      "y": 7.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "8"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Release\ncompound",
+      "label2": "",
+      "x": 7.25,
+      "y": 7.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LAlt",
+        "LShift",
+        "LCtrl",
+        "8"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Make clip\nmask",
+      "label2": "",
+      "x": 9.0,
+      "y": 7.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "7"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Release\nclip mask",
+      "label2": "",
+      "x": 10.75,
+      "y": 7.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LAlt",
+        "LCtrl",
+        "7"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Join\nCtrl+J",
+      "label2": "",
+      "x": 12.5,
+      "y": 7.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "J"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Average",
+      "label2": "",
+      "x": 14.25,
+      "y": 7.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LAlt",
+        "LCtrl",
+        "J"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Hide edges\nCtrl+H",
+      "label2": "",
+      "x": 16.0,
+      "y": 7.75,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#2e8b57",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "H"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Zoom in",
+      "label2": "",
+      "x": 0.25,
+      "y": 9.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#a8870b",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "="
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Zoom out",
+      "label2": "",
+      "x": 2.0,
+      "y": 9.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#a8870b",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "-"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Fit\nartboard",
+      "label2": "",
+      "x": 3.75,
+      "y": 9.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#a8870b",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "0"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Fit all\nartboards",
+      "label2": "",
+      "x": 5.5,
+      "y": 9.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#a8870b",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LAlt",
+        "LCtrl",
+        "0"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Actual\nsize",
+      "label2": "",
+      "x": 7.25,
+      "y": 9.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#a8870b",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "1"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Outline /\npreview",
+      "label2": "",
+      "x": 9.0,
+      "y": 9.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#a8870b",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "Y"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Rulers\nCtrl+R",
+      "label2": "",
+      "x": 10.75,
+      "y": 9.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#a8870b",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "R"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Guides\nCtrl+;",
+      "label2": "",
+      "x": 12.5,
+      "y": 9.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#a8870b",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        ";"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Smart\nguides",
+      "label2": "",
+      "x": 14.25,
+      "y": 9.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#a8870b",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "U"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Grid\nCtrl+\"",
+      "label2": "",
+      "x": 16.0,
+      "y": 9.0,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#a8870b",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "LShift",
+        "'"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Snap to\npoint",
+      "label2": "",
+      "x": 0.25,
+      "y": 10.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#a8870b",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LAlt",
+        "LShift",
+        "LCtrl",
+        "'"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Bounding\nbox",
+      "label2": "",
+      "x": 2.0,
+      "y": 10.25,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#a8870b",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "LCtrl",
+        "B"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "New\nCtrl+N",
+      "label2": "",
+      "x": 0.25,
+      "y": 11.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#555566",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "N"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Open\nCtrl+O",
+      "label2": "",
+      "x": 2.0,
+      "y": 11.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#555566",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "O"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Save\nCtrl+S",
+      "label2": "",
+      "x": 3.75,
+      "y": 11.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#555566",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "S"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Save as",
+      "label2": "",
+      "x": 5.5,
+      "y": 11.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#555566",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "LCtrl",
+        "S"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Place",
+      "label2": "",
+      "x": 7.25,
+      "y": 11.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#555566",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LShift",
+        "LCtrl",
+        "P"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Export for\nscreens",
+      "label2": "",
+      "x": 9.0,
+      "y": 11.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#555566",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LAlt",
+        "LCtrl",
+        "E"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Close\nCtrl+W",
+      "label2": "",
+      "x": 10.75,
+      "y": 11.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#555566",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "W"
+      ]
+    },
+    {
+      "key": "Shortcut",
+      "label": "Print\nCtrl+P",
+      "label2": "",
+      "x": 12.5,
+      "y": 11.5,
+      "w": 1.6,
+      "h": 1.0,
+      "color": "#555566",
+      "fg": "#ffffff",
+      "edge": "",
+      "edge_px": null,
+      "shortcut": [
+        "LCtrl",
+        "P"
+      ]
+    }
+  ]
+}

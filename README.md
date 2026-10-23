@@ -104,6 +104,7 @@ The [`example loadouts`](example%20loadouts) folder has ready-made layouts to im
 | `Scan - Letters / Numbers and symbols / Editing` | Large-key layouts made for [switch scanning](#switch-scanning) |
 | `Talk - ...` (23 layouts, in `dialogue tree`) | A linked [dialogue tree](#communication-boards-and-dialogue-trees) of spoken phrases |
 | `Core words - Picture board` and `Core words - Animated board` | A 6x6 [picture communication board](#communication-boards-and-dialogue-trees) |
+| `Adobe Illustrator - Shortcuts` | 87 keys for Illustrator's default Windows shortcuts: tools, color, arranging, editing, view and file, grouped by color |
 | `NoteDeck - Keyboard entry` | One key per note and length (C to B with sharps and flats, ½ to 4 beats), rests, octave keys, and play, edit and navigation keys, for a music app that needs a length key held while the note is pressed |
 | `Test - Pictures` | Still and animated pictures, for checking that import works |
 
