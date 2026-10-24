@@ -295,7 +295,7 @@ For people who use a single switch, KeyDeck can scan its own keys. Switch it on 
 
 - **Speak words.** Switch on **Settings → Speak words** and KeyDeck says each word aloud when you finish it, whether you typed it, swiped it or picked it from the suggestion bar. Speed and volume are adjustable.
 - **Speak keys** say a whole phrase when pressed, even when Speak words is off. Select a key in Edit layout and choose **Program speech...**.
-- **Caption bar.** A strip under the keys shows what was just spoken, so it is visible to people nearby, in screenshots and in recordings, and to anyone who can't hear. Turn it off under **Settings → Speak words**.
+- **Caption bar.** A strip under the keys shows what was just spoken, so it is visible to people nearby, in screenshots and in recordings, and to anyone who can't hear. It also shows each word you type when **Read each word aloud** is off, so it works as a plain on-screen transcript with no sound. Turn it off under **Settings → Speak words**.
 - Speech uses the Windows voice installed on your computer.
 
 ## Communication boards and dialogue trees

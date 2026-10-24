@@ -2617,7 +2617,7 @@ class SetupWizard:
     def finish(self):
         self.app.setup_finished(build_setup(self.v_mode.get(), self.options()))
         self.close()
-CAPTION_IDLE = "Spoken text shows here"
+CAPTION_IDLE = "Typed and spoken text shows here"
 
 # --------------------------------------------------------------------------
 # Theme
@@ -3005,7 +3005,7 @@ class KeyDeck:
         speak_menu = tk.Menu(menu, tearoff=0)
         speak_menu.add_checkbutton(label="Read each word aloud when I finish it",
                                    variable=self.v_speak, command=self.on_setting_change)
-        speak_menu.add_checkbutton(label="Show spoken text in a caption bar (words and Speak keys)",
+        speak_menu.add_checkbutton(label="Show typed words and spoken phrases in a caption bar",
                                    variable=self.v_caption, command=self.on_setting_change)
         speak_menu.add_separator()
         for label, value in SPEAK_RATES:
@@ -5148,17 +5148,20 @@ class KeyDeck:
 
     # ---------------- speak each word ----------------
     def speak_word(self, text):
-        """Called when a word is finished (typed, swiped or picked from the bar)."""
-        if not self.settings.get("speak") or self.edit_mode or getattr(self, "speak_mute", False):
+        """Called when a word is finished (typed, swiped or picked from the bar).
+
+        The word is read aloud only when "Read each word aloud" is on, but it always goes to the
+        caption bar (if that is on), so the caption works as a plain transcript of what you type."""
+        if self.edit_mode or getattr(self, "speak_mute", False):
             return
         w = "".join(c for c in str(text) if c.isalpha() or c == "'")
         if not w.strip("'"):
             return
-        if getattr(self, "speaker", None) is None:
-            self.speaker = Speaker()
-        self.speaker.say(w, self.settings.get("speak_rate", 0), self.settings.get("speak_volume", 100))
+        if self.settings.get("speak"):
+            if getattr(self, "speaker", None) is None:
+                self.speaker = Speaker()
+            self.speaker.say(w, self.settings.get("speak_rate", 0), self.settings.get("speak_volume", 100))
         self.show_caption(w)
-
     # ---------------- switch scanning ----------------
     def scan_on(self):
         return self.scan is not None and bool(self.settings.get("scan"))
