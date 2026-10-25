@@ -2810,6 +2810,7 @@ class KeyDeck:
         still has its 'never take focus' style (repairing it if anything dropped it)."""
         try:
             if IS_WIN:
+                self.heal_window()
                 own = self.own_hwnd()
                 fg = user32.GetForegroundWindow()
                 if fg and fg != own and self.window_pid(fg) != kernel32.GetCurrentProcessId():
@@ -5538,6 +5539,51 @@ class KeyDeck:
         else:
             tab.set_progress(frac)
 
+
+    def virtual_screen(self):
+        """(left, top, right, bottom) of all monitors together."""
+        if IS_WIN:
+            try:
+                x, y = user32.GetSystemMetrics(76), user32.GetSystemMetrics(77)
+                w, h = user32.GetSystemMetrics(78), user32.GetSystemMetrics(79)
+                if w > 0 and h > 0:
+                    return x, y, x + w, y + h
+            except Exception:
+                pass
+        return 0, 0, self.root.winfo_screenwidth(), self.root.winfo_screenheight()
+
+    def heal_window(self):
+        """Put the keyboard back in shape if it has been left as a bare title bar or off every
+        screen (seen after a long idle, sleep or a display change).  Runs from window_watch."""
+        r = self.root
+        try:
+            state = r.state()
+        except Exception:
+            return
+        if self.is_minimized():
+            if state != "withdrawn":                 # the tab is up, so the keyboard should be hidden
+                self.restore_window()
+            return
+        if state != "normal":                        # minimized from the title bar is the user's choice
+            return
+        now = time.monotonic()
+        if now - self.__dict__.get("heal_last", 0.0) < 2.0:
+            return
+        w, h = r.winfo_width(), r.winfo_height()
+        rw, rh = r.winfo_reqwidth(), r.winfo_reqheight()
+        x, y = r.winfo_x(), r.winfo_y()
+        vl, vt, vr, vb = self.virtual_screen()
+        squashed = rw > 200 and rh > 100 and (w < rw * 0.6 or h < rh * 0.6)
+        off = x + w <= vl + 20 or x >= vr - 20 or y + h <= vt + 20 or y >= vb - 20
+        if not (squashed or off):
+            return
+        self.heal_last = now
+        r.geometry("")                               # forget any odd size and go back to the natural one
+        r.update_idletasks()
+        if off:
+            self.place_window()
+        self.keep_on_screen()
+        self.apply_noactivate(not self.edit_mode)
     # ---------------- caption bar for spoken text ----------------
     def build_caption(self):
         """A strip under the keys that shows what was just spoken (it can be switched off)."""
