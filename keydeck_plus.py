@@ -6012,7 +6012,8 @@ class KeyDeck:
 
     def layout_data(self, keys):
         out = {"version": 1, "keys": [{kk: vv for kk, vv in k.items() if kk != "id"} for k in keys]}
-        bg = self.background if keys is self.keys else getattr(keys, "background", None)
+        bg = (getattr(self, "background", None) if keys is getattr(self, "keys", None)
+              else getattr(keys, "background", None))
         if bg:
             out["background"] = bg
         return out

@@ -352,6 +352,10 @@ Any key can show a picture. Select a key in **Edit layout** and choose **Picture
 
 A layout can also have one **background picture** that sits behind all the keys: sheet music, a map of a game controller, a photo, a labelled diagram. Choose **Loadouts → Set background picture...**; **Remove background picture** takes it away. The picture is stretched to cover the keys, grows and shrinks with the keys when you change the key size, and is saved, exported and imported with the layout (use **Loadouts → Save** after adding one). It is a still picture, up to about 1.5 MB after shrinking; without Pillow only PNG works. The example `NoteDeck - Sheet music` layouts use it to draw a staff behind the note keys.
 
+### KeyDeck Music
+
+A sibling program, [KeyDeck Music](README_KeyDeck_Music.md) (`keydeck_music.py`), builds on this one with sheet-music layouts for NoteDeck (treble and bass clef, sharps and flats, a quiz mode) and a practice mode that lights up the next key.
+
 ## Types anywhere
 
 - **Never steals focus.** Clicking a key does not pull focus away from the program you're typing into, so keystrokes go where you were working.
