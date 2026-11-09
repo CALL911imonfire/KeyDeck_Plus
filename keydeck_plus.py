@@ -66,6 +66,7 @@ import os
 import queue
 import re
 import sys
+import struct
 import subprocess
 import threading
 import types
@@ -360,6 +361,11 @@ def list_loadouts():
 def safe_name(name):
     keep = "".join(ch for ch in name if ch.isalnum() or ch in " -_").strip()
     return keep
+
+
+class KeyList(list):
+    """A list of keys that remembers the layout's background picture."""
+    background = None
 
 
 def new_key_dict(name, x, y, w=1.0, h=1.0, label=None, label2="", color="", fg="", edge="", edge_px=None):
@@ -2064,6 +2070,73 @@ def valid_picture_data(text):
     return raw.startswith(b"\x89PNG") or raw.startswith(b"GIF8")
 
 
+# ---- background picture ------------------------------------------------------------
+# A layout can have one picture behind its keys (sheet music, a keyboard map, a photo...).
+# It is saved inside the layout as {"data", "name", "x", "y", "w", "h"}; the position and
+# size are in key units, so the picture grows and shrinks together with the keys.
+BG_MAX_BYTES = 1500000
+
+
+def prepare_background(path):
+    """Read a picture file for use behind the keys: (base64 text, file name, width, height).
+    Raises ValueError with a plain-language reason if it can't be used."""
+    try:
+        with open(path, "rb") as f:
+            data = f.read(30 * 1024 * 1024 + 1)
+    except OSError as ex:
+        raise ValueError("Could not open the file: %s" % ex)
+    if len(data) > 30 * 1024 * 1024:
+        raise ValueError("That file is too big (over 30 MB).")
+    name = os.path.basename(path)
+    if HAVE_PIL:
+        try:
+            im = Image.open(io.BytesIO(data))
+            im.load()
+            im = im.convert("RGBA")
+        except Exception:
+            raise ValueError("That doesn't look like a picture KeyDeck can read.")
+        for longest in (1800, 1400, 1000, 700):
+            small = im.copy()
+            small.thumbnail((longest, longest), Image.LANCZOS)
+            out = io.BytesIO()
+            small.save(out, "PNG", optimize=True)
+            if out.tell() <= BG_MAX_BYTES:
+                return base64.b64encode(out.getvalue()).decode("ascii"), name, small.width, small.height
+        raise ValueError("That picture is too detailed to store. Try a simpler one.")
+    if not data.startswith(b"\x89PNG"):
+        raise ValueError("Only PNG pictures work here. Save the picture as a PNG first "
+                         "(or install the Pillow package to use JPG and other types).")
+    if len(data) > BG_MAX_BYTES:
+        raise ValueError("That picture is %d KB; the limit is %d KB. Make it smaller first "
+                         "(or install the Pillow package, which shrinks pictures for you)."
+                         % (len(data) // 1000, BG_MAX_BYTES // 1000))
+    w, h = struct.unpack(">II", data[16:24])
+    return base64.b64encode(data).decode("ascii"), name, w, h
+
+
+def clean_background(raw):
+    """A background dict from a layout file, or None if it isn't usable."""
+    if not isinstance(raw, dict):
+        return None
+    text = raw.get("data")
+    if not isinstance(text, str) or not text or len(text) > BG_MAX_BYTES * 4 // 3 + 16:
+        return None
+    try:
+        blob = base64.b64decode(text, validate=True)
+    except Exception:
+        return None
+    if not (blob.startswith(b"\x89PNG") or blob.startswith(b"GIF8")):
+        return None
+    try:
+        x, y = float(raw.get("x", 0)), float(raw.get("y", 0))
+        w, h = float(raw.get("w", 0)), float(raw.get("h", 0))
+    except (TypeError, ValueError):
+        return None
+    if not (0.5 <= w <= 200 and 0.5 <= h <= 200 and -50 <= x <= 200 and -50 <= y <= 200):
+        return None
+    return {"data": text, "name": str(raw.get("name", ""))[:80], "x": x, "y": y, "w": w, "h": h}
+
+
 # ---- colour themes ----------------------------------------------------------------
 THEME_ROLES = ("BG", "PANEL", "KEY_COLOR", "MOD_COLOR", "KEY_EDGE", "SEL_EDGE", "PRESS_COLOR",
                "ONESHOT_COLOR", "HOLD_COLOR", "TEXT", "PRESS_FG", "ONESHOT_FG", "HOLD_FG",
@@ -2672,6 +2745,7 @@ class KeyDeck:
         self.sel = None
         self.drag = None
         self.loadout_name = ""    # "" means the built-in default
+        self.background = None    # picture behind the keys (see clean_background)
         self._loading = False
         self._next_id = 1
         self.scale = max(1.0, root.winfo_fpixels("1i") / 96.0)
@@ -3498,6 +3572,7 @@ class KeyDeck:
     def create_blank_layout(self):
         self.release_all(redraw=False)
         self.keys = []
+        self.background = None
         self.sel = None
         self.drag = None
         self.loadout_name = ""
@@ -3534,6 +3609,9 @@ class KeyDeck:
         m.add_command(label="Delete current loadout", command=self.delete_loadout)
         m.add_command(label="Reset to default layout", command=lambda: self.load_loadout(""))
         m.add_separator()
+        m.add_command(label="Set background picture\u2026", command=self.pick_background)
+        m.add_command(label="Remove background picture", command=self.remove_background)
+        m.add_separator()
         m.add_command(label="Export this layout\u2026", command=self.export_layout)
         m.add_command(label="Export all layouts\u2026", command=self.export_all_layouts)
         m.add_command(label="Import layouts\u2026", command=self.import_layouts)
@@ -3567,6 +3645,7 @@ class KeyDeck:
         if keys is None:
             keys = default_layout()
             name = ""
+        self.background = getattr(keys, "background", None)
         self._next_id = 1
         for k in keys:
             k["id"] = self.new_id()
@@ -3586,8 +3665,7 @@ class KeyDeck:
 
     def write_loadout(self, name):
         os.makedirs(LOADOUT_DIR, exist_ok=True)
-        data = {"version": 1, "keys": [{kk: vv for kk, vv in k.items() if kk != "id"}
-                                       for k in self.keys]}
+        data = self.layout_data(self.keys)
         with open(os.path.join(LOADOUT_DIR, name + ".json"), "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
         self.loadout_name = name
@@ -3752,9 +3830,52 @@ class KeyDeck:
         self.canvas.delete("key%d" % k["id"])
         self.draw_key(k)
 
+    def bg_rect(self):
+        b = self.background
+        u = self.unit
+        return (self.pad + b["x"] * u, self.pad + b["y"] * u,
+                self.pad + (b["x"] + b["w"]) * u, self.pad + (b["y"] + b["h"]) * u)
+
+    def background_image(self, bw, bh):
+        """Tk image of the background picture stretched to bw x bh pixels, or None."""
+        data = self.background["data"]
+        bw, bh = max(1, int(bw)), max(1, int(bh))
+        cache = self.__dict__.setdefault("bg_cache", {})
+        ck = (hash(data), bw, bh)
+        img = cache.get(ck)
+        if img is None:
+            try:
+                if HAVE_PIL:
+                    im = Image.open(io.BytesIO(base64.b64decode(data))).convert("RGBA")
+                    img = ImageTk.PhotoImage(im.resize((bw, bh), Image.LANCZOS))
+                else:
+                    img = tk.PhotoImage(data=data)
+                    fx, fy = bw / img.width(), bh / img.height()
+                    f = (fx + fy) / 2
+                    if f < 1:
+                        n = max(1, int(round(1 / f)))
+                        img = img.subsample(n, n)
+                    elif f >= 1.5:
+                        img = img.zoom(int(round(f)), int(round(f)))
+            except Exception:
+                img = False
+            if len(cache) > 6:
+                cache.clear()
+            cache[ck] = img
+        return img or None
+
+    def draw_background(self):
+        if not self.background:
+            return
+        x1, y1, x2, y2 = self.bg_rect()
+        img = self.background_image(x2 - x1, y2 - y1)
+        if img:
+            self.canvas.create_image(x1, y1, image=img, anchor="nw", tags=("bg",))
+
     def redraw(self):
         self.canvas.delete("all")
         self.anim_items().clear()
+        self.draw_background()
         for k in self.keys:
             self.draw_key(k)
         self.fit_canvas()
@@ -3763,6 +3884,10 @@ class KeyDeck:
         u = self.unit
         mx = max((k["x"] + k["w"] for k in self.keys), default=10)
         my = max((k["y"] + k["h"] for k in self.keys), default=4)
+        if self.background:
+            b = self.background
+            mx = max(mx, b["x"] + b["w"])
+            my = max(my, b["y"] + b["h"])
         extra = 2 if self.edit_mode else 0
         w = int(self.pad * 2 + (mx + extra) * u)
         h = int(self.pad * 2 + (my + extra) * u)
@@ -5410,6 +5535,36 @@ class KeyDeck:
         k["image_data"], k["image_name"] = data, name
         self.refresh_key(k)
 
+    def pick_background(self):
+        path = filedialog.askopenfilename(
+            parent=self.root, title="Choose a background picture for this layout",
+            filetypes=PIC_TYPES_PIL if HAVE_PIL else (("PNG pictures", "*.png"), ("All files", "*.*")))
+        if not path:
+            return
+        try:
+            data, name, iw, ih = prepare_background(path)
+        except ValueError as ex:
+            messagebox.showerror("Background picture", str(ex), parent=self.root)
+            return
+        mx = max((k["x"] + k["w"] for k in self.keys), default=10)
+        my = max((k["y"] + k["h"] for k in self.keys), default=4)
+        w = mx + 0.5
+        h = w * ih / max(1, iw)
+        if h < my + 0.5:                      # keep the whole keyboard on the picture
+            h = my + 0.5
+            w = h * iw / max(1, ih)
+        self.background = {"data": data, "name": name, "x": -0.25, "y": -0.25,
+                           "w": round(w, 3), "h": round(h, 3)}
+        self.redraw()
+        if self.loadout_name:
+            messagebox.showinfo("Background picture", "Added. Use Loadouts \u25b8 Save to keep it "
+                                "with this layout.", parent=self.root)
+
+    def remove_background(self):
+        if self.background:
+            self.background = None
+            self.redraw()
+
     def remove_picture(self):
         k = self.sel
         if k and k.get("image_data"):
@@ -5851,10 +6006,16 @@ class KeyDeck:
                 k["image_data"] = raw["image_data"]
                 k["image_name"] = str(raw.get("image_name", ""))[:80]
             keys.append(k)
+        keys = KeyList(keys)
+        keys.background = clean_background(data.get("background"))
         return keys
 
     def layout_data(self, keys):
-        return {"version": 1, "keys": [{kk: vv for kk, vv in k.items() if kk != "id"} for k in keys]}
+        out = {"version": 1, "keys": [{kk: vv for kk, vv in k.items() if kk != "id"} for k in keys]}
+        bg = self.background if keys is self.keys else getattr(keys, "background", None)
+        if bg:
+            out["background"] = bg
+        return out
 
     def export_layout(self):
         """Save the layout on screen as one file that can be sent to someone else."""

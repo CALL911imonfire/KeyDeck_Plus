@@ -107,6 +107,7 @@ The [`example loadouts`](example%20loadouts) folder has ready-made layouts to im
 | `Adobe Illustrator - Shortcuts` | 87 keys for Illustrator's default Windows shortcuts: tools, color, arranging, editing, view and file, grouped by color |
 | `NoteDeck - Keyboard entry` | One key per note and length (C to B with sharps and flats, ½ to 4 beats), rests, octave keys, and play, edit and navigation keys, for a music app that needs a length key held while the note is pressed |
 | `NoteDeck - Staff (note names)` and `(quiz, no names)` | Note keys arranged like treble-clef sheet music (C4 to A5, lines light and spaces dark), one column per length, for learning where the notes go |
+| `NoteDeck - Sheet music (note names)` and `(quiz, no names)` | The same note keys sitting on a drawn staff with a treble clef (a [background picture](#a-picture-behind-the-keys)), so the keys line up like real sheet music |
 | `Test - Pictures` | Still and animated pictures, for checking that import works |
 
 To try one, choose **Loadouts → Import layouts**, pick the file, and switch to it. The `KeyDeck example layouts (all in one)` file imports every demo at once, and `KeyDeck dialogue tree (all in one)` imports the whole dialogue tree.
@@ -346,6 +347,10 @@ Any key can show a picture. Select a key in **Edit layout** and choose **Picture
 - Pictures are stored inside the layout, so exporting and importing carries them along.
 - Installing the optional [Pillow](https://python-pillow.org/) package (`python -m pip install pillow`) adds JPG, BMP, WebP and other picture types, smooth scaling, and animation from other formats. Without it, KeyDeck still handles PNG and GIF files up to 400 KB.
 - Large pictures are shrunk automatically to keep layout files a sensible size.
+
+### A picture behind the keys
+
+A layout can also have one **background picture** that sits behind all the keys: sheet music, a map of a game controller, a photo, a labelled diagram. Choose **Loadouts → Set background picture...**; **Remove background picture** takes it away. The picture is stretched to cover the keys, grows and shrinks with the keys when you change the key size, and is saved, exported and imported with the layout (use **Loadouts → Save** after adding one). It is a still picture, up to about 1.5 MB after shrinking; without Pillow only PNG works. The example `NoteDeck - Sheet music` layouts use it to draw a staff behind the note keys.
 
 ## Types anywhere
 
