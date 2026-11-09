@@ -354,7 +354,7 @@ A layout can also have one **background picture** that sits behind all the keys:
 
 ### KeyDeck Music
 
-A sibling program, [KeyDeck Music](README_KeyDeck_Music.md) (`keydeck_music.py`), builds on this one with sheet-music layouts for NoteDeck (treble and bass clef, sharps and flats, a quiz mode) and a practice mode that lights up the next key.
+A sibling program, [KeyDeck Music](https://github.com/CALL911imonfire/KeyDeck_Music), builds on this one with sheet-music layouts for NoteDeck (treble and bass clef, sharps and flats, a quiz mode) and a practice mode that lights up the next key.
 
 ## Types anywhere
 
